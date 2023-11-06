@@ -3,7 +3,7 @@ import Logo from '../../logo/logo';
 import UserBlock from '../../user-block/user-block';
 import Footer from '../../footer/footer';
 
-function MyList() : JSX.Element {
+function MyListPage() : JSX.Element {
   return (
     <body>
       <div className="user-page">
