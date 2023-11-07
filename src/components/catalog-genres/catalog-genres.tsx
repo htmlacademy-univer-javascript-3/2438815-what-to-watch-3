@@ -9,7 +9,7 @@ function GenresCatalog(){
       </li>
       {genres.map((genre) => (
         <li className="catalog__genres-item" key={genre}>
-          <Link to="#" className="catalog__genres-link">genre</Link>
+          <Link to="#" className="catalog__genres-link">{genre}</Link>
         </li>))}
     </ul>
   );
