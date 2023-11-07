@@ -3,6 +3,7 @@ import Logo from '../../../logo/logo';
 import UserBlock from '../../../user-block/user-block';
 import Footer from '../../../footer/footer';
 
+export default MovieInListPage;
 function MovieInListPage(){
   return(
     <body>

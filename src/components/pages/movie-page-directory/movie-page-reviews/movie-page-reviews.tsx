@@ -2,8 +2,8 @@ import FilmCard from '../../../film-card/film-card';
 import Logo from '../../../logo/logo';
 import UserBlock from '../../../user-block/user-block';
 import Footer from '../../../footer/footer';
-
-function MoviePage(){
+export default MoviePageReviews;
+function MoviePageReviews(){
   return(
     <body>
       <section className="film-card film-card--full">

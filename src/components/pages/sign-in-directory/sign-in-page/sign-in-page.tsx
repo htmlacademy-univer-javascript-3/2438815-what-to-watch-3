@@ -1,5 +1,6 @@
 import Logo from '../../../logo/logo';
 import Footer from '../../../footer/footer';
+export default SignInPage;
 function SignInPage() : JSX.Element{
   return (
     <body>
@@ -9,7 +10,7 @@ function SignInPage() : JSX.Element{
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
         <div className="sign-in user-page__content">
-          <form action="sign-in-directory/sign-in#" className="sign-in__form">
+          <form action="sign-in-pages-directory/sign-in#" className="sign-in__form">
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email"/>
