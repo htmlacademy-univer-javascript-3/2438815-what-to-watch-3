@@ -2,7 +2,9 @@ import FilmCard from '../../../film-card/film-card';
 import Logo from '../../../logo/logo';
 import UserBlock from '../../../user-block/user-block';
 import Footer from '../../../footer/footer';
+import {Link} from 'react-router-dom';
 
+export default MovieInListPage;
 function MovieInListPage(){
   return(
     <body>
@@ -37,7 +39,7 @@ function MovieInListPage(){
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to="add-review.html" className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -51,13 +53,13 @@ function MovieInListPage(){
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
+                    <Link to="#" className="film-nav__link">Overview</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
+                    <Link to="#" className="film-nav__link">Details</Link>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
+                    <Link to="#" className="film-nav__link">Reviews</Link>
                   </li>
                 </ul>
               </nav>

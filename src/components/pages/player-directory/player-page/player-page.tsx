@@ -1,8 +1,9 @@
+export default PlayerPage;
 function PlayerPage() : JSX.Element{
   return (
     <body>
       <div className="player">
-        <video src="player-directory/player#" className="player__video" poster="img/player-poster.jpg"></video>
+        <video src="player-pages-directory/player#" className="player__video" poster="img/player-poster.jpg"></video>
 
         <button type="button" className="player__exit">Exit</button>
 

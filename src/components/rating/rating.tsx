@@ -2,7 +2,6 @@ function generateRatingList(min: number, max: number): number[] {
   return [...Array.from(Array(max - min + 1).keys())].map((num) => num + min);
 }
 
-
 type RatingProps = {
   value : number;
 }

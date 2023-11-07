@@ -1,5 +1,6 @@
 import Logo from '../../../logo/logo';
 import Footer from '../../../footer/footer';
+export default SignInMessagePage;
 function SignInMessagePage() {
   return (
     <body>
@@ -9,7 +10,7 @@ function SignInMessagePage() {
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
         <div className="sign-in user-page__content">
-          <form action="sign-in-directory/sign-in-message#" className="sign-in__form">
+          <form action="sign-in-pages-directory/sign-in-message#" className="sign-in__form">
             <div className="sign-in__message">
               <p>We can’t recognize this email<br/> and password combination. Please try again.</p>
             </div>

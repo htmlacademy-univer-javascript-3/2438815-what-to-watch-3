@@ -2,7 +2,7 @@ import FilmCard from '../../film-card/film-card';
 import Logo from '../../logo/logo';
 import UserBlock from '../../user-block/user-block';
 import Footer from '../../footer/footer';
-
+export default MyListPage;
 function MyListPage() : JSX.Element {
   return (
     <body>
