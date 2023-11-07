@@ -1,6 +1,5 @@
 export default UserBlock;
 
-
 function UserBlock() : JSX.Element {
   return (
     <ul className="user-block">
