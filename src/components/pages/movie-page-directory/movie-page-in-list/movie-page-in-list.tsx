@@ -1,11 +1,16 @@
-import FilmCard from '../../../film-card/film-card';
 import Logo from '../../../logo/logo';
 import UserBlock from '../../../user-block/user-block';
 import Footer from '../../../footer/footer';
 import {Link} from 'react-router-dom';
+import FilmsList from '../../../films-list/films-list';
+import {Films} from '../../../../types/film-type';
 
 export default MovieInListPage;
-function MovieInListPage(){
+
+type MovieInListPageProps = {
+  films: Films;
+}
+function MovieInListPage({films}: MovieInListPageProps){
   return(
     <body>
       <section className="film-card film-card--full">
@@ -92,12 +97,7 @@ function MovieInListPage(){
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <div className="catalog__films-list">
-            <FilmCard filmTitle = "Fantastic Beasts: The Crimes of Grindelwald" imgPath = "img/fantastic-beasts-the-crimes-of-grindelwald.jpg"/>
-            <FilmCard filmTitle = "Bohemian Rhapsody" imgPath = "img/bohemian-rhapsody.jpg"/>
-            <FilmCard filmTitle = "Macbeth" imgPath = "img/macbeth.jpg"/>
-            <FilmCard filmTitle = "Aviator" imgPath = "img/aviator.jpg"/>
-          </div>
+          <FilmsList films={films}/>
         </section>
         <Footer/>
       </div>

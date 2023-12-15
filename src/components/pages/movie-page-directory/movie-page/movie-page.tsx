@@ -1,11 +1,17 @@
-import FilmCard from '../../../film-card/film-card';
 import Logo from '../../../logo/logo';
 import UserBlock from '../../../user-block/user-block';
 import Footer from '../../../footer/footer';
 import {Link} from 'react-router-dom';
+import FilmsList from '../../../films-list/films-list';
+import {Films} from '../../../../types/film-type';
+import {AppRoute} from '../../../../consts';
 
 export default MoviePage;
-function MoviePage(){
+
+type MoviePageProps = {
+  films: Films;
+}
+function MoviePage({films} : MoviePageProps){
   return(
     <body>
       <section className="film-card film-card--full">
@@ -27,19 +33,25 @@ function MoviePage(){
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
+                  <Link to={AppRoute.Player}>
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                  </Link>
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                  <Link to={AppRoute.MyList}>
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  </Link>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to="add-review.html" className="btn film-card__button">Add review</Link>
+                <Link to={AppRoute.AddReview} className="btn film-card__button">
+                  Add review
+                </Link>
               </div>
             </div>
           </div>
@@ -93,12 +105,7 @@ function MoviePage(){
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <div className="catalog__films-list">
-            <FilmCard filmTitle = "Fantastic Beasts: The Crimes of Grindelwald" imgPath = "img/fantastic-beasts-the-crimes-of-grindelwald.jpg"/>
-            <FilmCard filmTitle = "Bohemian Rhapsody" imgPath = "img/bohemian-rhapsody.jpg"/>
-            <FilmCard filmTitle = "Macbeth" imgPath = "img/macbeth.jpg"/>
-            <FilmCard filmTitle = "Aviator" imgPath = "img/aviator.jpg"/>
-          </div>
+          <FilmsList films={films}/>
         </section>
         <Footer/>
       </div>
