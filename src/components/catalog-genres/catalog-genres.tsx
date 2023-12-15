@@ -7,7 +7,7 @@ function GenresCatalog(){
       <li className="catalog__genres-item catalog__genres-item--active">
         <Link to="#" className="catalog__genres-link">All genres</Link>
       </li>
-      {genres.map((genre) => (
+      {Object.values(genres).map((genre) => (
         <li className="catalog__genres-item" key={genre}>
           <Link to="#" className="catalog__genres-link">{genre}</Link>
         </li>))}
