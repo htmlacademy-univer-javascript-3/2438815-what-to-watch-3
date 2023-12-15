@@ -1,9 +1,15 @@
+import {VideoType} from '../../../../types/video-type';
+
 export default PlayerPage;
-function PlayerPage() : JSX.Element{
+
+type PlayerPageProps = {
+  video: VideoType;
+}
+function PlayerPage({video} : PlayerPageProps) : JSX.Element{
   return (
     <body>
       <div className="player">
-        <video src="player-pages-directory/player#" className="player__video" poster="img/player-poster.jpg"></video>
+        <video src={video.src} className="player__video" poster={video.posterPath}></video>
 
         <button type="button" className="player__exit">Exit</button>
 

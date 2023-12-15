@@ -1,8 +1,11 @@
-import FilmCard from '../../film-card/film-card';
 import Logo from '../../logo/logo';
 import Footer from '../../footer/footer';
 import UserBlock from '../../user-block/user-block';
-import GenresCatalog from '../../catalog-genres/catalog-genres';
+import GenresList from '../../genres-list/genres-list';
+import {Films} from '../../../types/film-type';
+import FilmsList from '../../films-list/films-list';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../../consts';
 
 export default MainPage;
 
@@ -10,8 +13,9 @@ type MainPageProps = {
   promoFilmTitle : string;
   promoFilmGenre : string;
   promoFilmYear : number;
+  films: Films;
 }
-function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear } : MainPageProps) : JSX.Element {
+function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear, films } : MainPageProps) : JSX.Element {
   return (
     <body>
       <section className="film-card">
@@ -41,15 +45,21 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear } : MainPagePr
 
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
+                  <Link to={AppRoute.Player}>
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                  </Link>
+                  <span>
+                    Play
+                  </span>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                  <Link to={AppRoute.MyList}>
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  </Link>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
@@ -62,31 +72,8 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear } : MainPagePr
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenresCatalog/>
-
-          <div className="catalog__films-list">
-            <FilmCard filmTitle = "Fantastic Beasts: The Crimes of Grindelwald" imgPath = "img/fantastic-beasts-the-crimes-of-grindelwald.jpg"/>
-            <FilmCard filmTitle = "Bohemian Rhapsody" imgPath = "img/bohemian-rhapsody.jpg"/>
-            <FilmCard filmTitle = "Macbeth" imgPath = "img/macbeth.jpg"/>
-            <FilmCard filmTitle = "Aviator" imgPath = "img/aviator.jpg"/>
-            <FilmCard filmTitle = "We need to talk about Kevin" imgPath = "img/we-need-to-talk-about-kevin.jpg"/>
-            <FilmCard filmTitle = "What We Do in the Shadows" imgPath = "img/what-we-do-in-the-shadows.jpg"/>
-            <FilmCard filmTitle = "Revenant" imgPath = "img/revenant.jpg"/>
-            <FilmCard filmTitle = "Johnny English" imgPath = "img/johnny-english.jpg"/>
-            <FilmCard filmTitle = "Shutter Island" imgPath = "img/shutter-island.jpg"/>
-            <FilmCard filmTitle = "Pulp Fiction" imgPath = "img/pulp-fiction.jpg"/>
-            <FilmCard filmTitle = "No Country for Old Men" imgPath = "img/no-country-for-old-men.jpg"/>
-            <FilmCard filmTitle = "Snatch" imgPath = "img/snatch.jpg"/>
-            <FilmCard filmTitle = "Moonrise Kingdom" imgPath = "img/moonrise-kingdom.jpg"/>
-            <FilmCard filmTitle = "Seven Years in Tibet" imgPath = "img/seven-years-in-tibet.jpg"/>
-            <FilmCard filmTitle = "Midnight Special" imgPath = "img/midnight-special.jpg"/>
-            <FilmCard filmTitle = "War of the Worlds" imgPath = "img/war-of-the-worlds.jpg"/>
-            <FilmCard filmTitle = "Dardjeeling Limited" imgPath = "img/dardjeeling-limited.jpg"/>
-            <FilmCard filmTitle = "Orlando" imgPath = "img/orlando.jpg"/>
-            <FilmCard filmTitle = "Mindhunter" imgPath = "img/mindhunter.jpg"/>
-            <FilmCard filmTitle = "Midnight Special" imgPath = "img/midnight-special.jpg"/>
-          </div>
-
+          <GenresList/>
+          <FilmsList films={films}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>

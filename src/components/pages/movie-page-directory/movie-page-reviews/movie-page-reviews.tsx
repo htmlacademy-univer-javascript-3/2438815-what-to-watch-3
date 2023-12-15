@@ -1,11 +1,19 @@
-import FilmCard from '../../../film-card/film-card';
 import Logo from '../../../logo/logo';
 import UserBlock from '../../../user-block/user-block';
 import Footer from '../../../footer/footer';
 import {Link} from 'react-router-dom';
+import FilmsList from '../../../films-list/films-list';
+import {Films} from '../../../../types/film-type';
+import ReviewsList from '../../../reviews-list/reviews-list';
+import {Reviews} from '../../../../types/review-type';
 
-export default MoviePageReviews;
-function MoviePageReviews(){
+export default MovieReviewsPage;
+
+type MovieReviewsPageProps = {
+  films: Films;
+  reviews: Reviews;
+}
+function MovieReviewsPage({films, reviews}: MovieReviewsPageProps){
   return(
     <body>
       <section className="film-card film-card--full">
@@ -63,80 +71,7 @@ function MoviePageReviews(){
                   </li>
                 </ul>
               </nav>
-              <div className="film-card__reviews film-card__row">
-                <div className="film-card__reviews-col">
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director&#39s funniest and most exquisitely designed films in years.</p>
-                      <footer className="review__details">
-                        <cite className="review__author">Kate Muir</cite>
-                        <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
-                      </footer>
-                    </blockquote>
-                    <div className="review__rating">8,9</div>
-                  </div>
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">Anderson&#39s films are too precious for some, but for those of us willing to lose ourselves in them, they&#39re a delight. &ldquo;The Grand Budapest Hotel&rdquo; is no different, except that he has added a hint of gravitas to the mix, improving the recipe.</p>
-                      <footer className="review__details">
-                        <cite className="review__author">Bill Goodykoontz</cite>
-                        <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
-                      </footer>
-                    </blockquote>
-                    <div className="review__rating">8,0</div>
-                  </div>
-
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">I didn&#39t find it amusing, and while I can appreciate the creativity, it&#39s an hour and 40 minutes I wish I could take back.</p>
-
-                      <footer className="review__details">
-                        <cite className="review__author">Amanda Greever</cite>
-                        <time className="review__date" dateTime="2015-11-18">November 18, 2015</time>
-                      </footer>
-                    </blockquote>
-
-                    <div className="review__rating">8,0</div>
-                  </div>
-                </div>
-                <div className="film-card__reviews-col">
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">The mannered, madcap proceedings are often delightful, occasionally silly, and here and there, gruesome and/or heartbreaking.</p>
-
-                      <footer className="review__details">
-                        <cite className="review__author">Matthew Lickona</cite>
-                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                      </footer>
-                    </blockquote>
-
-                    <div className="review__rating">7,2</div>
-                  </div>
-
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.</p>
-
-                      <footer className="review__details">
-                        <cite className="review__author">Paula Fleri-Soler</cite>
-                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                      </footer>
-                    </blockquote>
-
-                    <div className="review__rating">7,6</div>
-                  </div>
-                  <div className="review">
-                    <blockquote className="review__quote">
-                      <p className="review__text">It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.</p>
-                      <footer className="review__details">
-                        <cite className="review__author">Paula Fleri-Soler</cite>
-                        <time className="review__date" dateTime="2016-12-20">December 20, 2016</time>
-                      </footer>
-                    </blockquote>
-                    <div className="review__rating">7,0</div>
-                  </div>
-                </div>
-              </div>
+              <ReviewsList reviews={reviews}/>
             </div>
           </div>
         </div>
@@ -144,12 +79,7 @@ function MoviePageReviews(){
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <div className="catalog__films-list">
-            <FilmCard filmTitle = "Fantastic Beasts: The Crimes of Grindelwald" imgPath = "img/fantastic-beasts-the-crimes-of-grindelwald.jpg"/>
-            <FilmCard filmTitle = "Bohemian Rhapsody" imgPath = "img/bohemian-rhapsody.jpg"/>
-            <FilmCard filmTitle = "Macbeth" imgPath = "img/macbeth.jpg"/>
-            <FilmCard filmTitle = "Aviator" imgPath = "img/aviator.jpg"/>
-          </div>
+          <FilmsList films={films}/>
         </section>
         <Footer/>
       </div>

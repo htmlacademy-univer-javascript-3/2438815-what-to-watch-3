@@ -18,14 +18,36 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
-export const genres = [
-  'Comedies',
-  'Crime',
-  'Documentary',
-  'Dramas',
-  'Horror',
-  'Kids & Family',
-  'Romance',
-  'Sci-Fi',
-  'Thrillers'
-];
+export enum genres {
+  Comedy = 'Comedies',
+  Crime = 'Crime',
+  Documentary = 'Documentary',
+  Drama = 'Dramas',
+  Horror = 'Horror',
+  KidsAndFamily = 'Kids & Family',
+  Romance = 'Romance',
+  SciFi = 'Sci-Fi',
+  Thriller = 'Thrillers'
+}
+
+export enum ratings {
+  One = 'Terrible',
+  Two = 'Very very Bad',
+  Three = 'Very Bad',
+  Four = 'Bad',
+  Five = 'Near normal',
+  Six = 'Normal',
+  Seven = 'Good',
+  Eight = 'Very good',
+  Nine = 'Very very good',
+  Ten = 'Brilliant'
+}
+
+export const bgData = {
+  imgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
+  imgAlt: 'The Grand Budapest Hotel'
+};
+export const posterData = {
+  imgSrc: 'img/bg-the-grand-budapest-hotel-poster.jpg',
+  imgAlt: 'The Grand Budapest Hotel poster'
+};

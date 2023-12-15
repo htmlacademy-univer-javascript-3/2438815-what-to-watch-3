@@ -1,9 +1,14 @@
+import {VideoType} from '../../../../types/video-type';
+
 export default PlayerPausePage;
-function PlayerPausePage() : JSX.Element {
+type PlayerPausePageProps = {
+  video: VideoType;
+}
+function PlayerPausePage({video} : PlayerPausePageProps) : JSX.Element {
   return (
     <body>
       <div className="player">
-        <video src="player-pages-directory/player-pause#" className="player__video" poster="img/player-poster.jpg"></video>
+        <video src={video.src} className="player__video" poster={video.posterPath}></video>
         <button type="button" className="player__exit">Exit</button>
         <div className="player__controls">
           <div className="player__controls-row">
