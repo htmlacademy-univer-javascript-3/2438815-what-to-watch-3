@@ -1,18 +1,17 @@
 import {genres} from '../consts';
+import {VideoType} from './video-type';
 
 export type FilmType = {
   id: number;
   title: string;
   genre: genres[];
   releaseYear: number;
-  posterImgSrc: string;
-  posterImgAlt: string;
   rating: RatingType;
   description: string;
   director: string;
   starring: string[];
   runTime: string;
-  movieAddress: string;
+  video: VideoType;
 }
 
 export type RatingType = {
