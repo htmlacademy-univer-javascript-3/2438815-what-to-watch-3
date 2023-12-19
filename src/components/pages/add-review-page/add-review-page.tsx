@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import Logo from '../../logo/logo';
 import UserBlock from '../../user-block/user-block';
 import AddReviewForm from '../../add-review-form/add-review-form';
-import FilmCardImg from '../../film-card/film-card';
+import FilmCardImg from '../../film-card/film-card-img';
 export default AddReviewPage;
 
 function AddReviewPage() {

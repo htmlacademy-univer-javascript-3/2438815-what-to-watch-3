@@ -6,7 +6,7 @@ import {Films} from '../../../types/film-type';
 import FilmsList from '../../films-list/films-list';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../consts';
-import FilmCardImg from '../../film-card/film-card';
+import FilmCardImg from '../../film-card/film-card-img';
 
 export default MainPage;
 

@@ -1,27 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../consts';
-import FilmCardImg from './film-card';
+import VideoPlayer from '../videoplayer/videoplayer';
+import {VideoType} from '../../types/video-type';
 export default FilmCardCatalog;
 
 type FilmCardCatalogProps = {
   filmId: number;
   filmTitle: string;
-  imgSrc: string;
-  imgAlt: string;
+  video: VideoType;
   setId: React.Dispatch<React.SetStateAction<number | null | undefined>>;
 }
 
-function FilmCardCatalog({filmId, filmTitle, imgSrc, imgAlt, setId} : FilmCardCatalogProps) : JSX.Element {
+function FilmCardCatalog({filmId, video, filmTitle, setId} : FilmCardCatalogProps) : JSX.Element {
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const handleMouseEnter = () => {
     setId(filmId);
+    setIsHovered(true);
   };
   const handleMouseLeave = () => {
     setId(null);
+    setIsHovered(false);
   };
   return (
     <article className="small-film-card catalog__films-card" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <FilmCardImg imgSrc={imgSrc} imgAlt={imgAlt} className={'small-film-card__image'} width={280} height={175}></FilmCardImg>
+      <VideoPlayer
+        video={video}
+        width={280}
+        height={175}
+        isHovered={isHovered}
+        muted
+      />
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to={AppRoute.Film}>
           {filmTitle}
