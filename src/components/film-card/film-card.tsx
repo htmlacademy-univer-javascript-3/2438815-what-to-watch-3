@@ -1,27 +1,22 @@
-export default FilmCard;
+export default FilmCardImg;
 
-type FilmCardProps = {
-  filmTitle : string;
-  imgPath : string;
-};
+type FilmCardImgProps = {
+  imgSrc: string;
+  imgAlt: string;
+  width?: number;
+  height?: number;
+  className: string;
 
-const cardHeight = 175;
-const cardWidth = 280;
+}
 
-function FilmCard({filmTitle, imgPath} : FilmCardProps) : JSX.Element {
+function FilmCardImg({imgSrc, imgAlt, width, height, className} : FilmCardImgProps) : JSX.Element {
   return (
-    <article className="small-film-card catalog__films-card">
-      <div className="small-film-card__image">
-        <img
-          src={imgPath}
-          alt={filmTitle}
-          width={cardWidth}
-          height={cardHeight}
-        />
-      </div>
-      <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{filmTitle}</a>
-      </h3>
-    </article>
+    <div className={className}>
+      <img src={imgSrc}
+        alt={imgAlt}
+        width={width}
+        height={height}
+      />
+    </div>
   );
 }

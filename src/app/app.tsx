@@ -10,7 +10,6 @@ import NotFoundPage from '../components/pages/not-found-page/not-found-page';
 import PrivateRoute from '../components/private-route/private-route';
 import {Films} from '../types/film-type';
 import {VideoType} from '../types/video-type';
-import {ImgDataType} from '../types/img-data-type';
 
 export default App;
 
@@ -20,8 +19,6 @@ type AppProps = {
   promoFilmYear : number;
   films: Films;
   video: VideoType;
-  bgData: ImgDataType;
-  posterData: ImgDataType;
 }
 function App(props : AppProps) : JSX.Element {
   return (
@@ -49,7 +46,7 @@ function App(props : AppProps) : JSX.Element {
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReviewPage bgData={{...props}.bgData} posterData={{...props}.posterData}/>}
+          element={<AddReviewPage/>}
         />
         <Route
           path={AppRoute.Player}

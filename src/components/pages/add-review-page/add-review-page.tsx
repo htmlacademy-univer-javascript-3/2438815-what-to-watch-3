@@ -1,22 +1,16 @@
 import {Link} from 'react-router-dom';
 import Logo from '../../logo/logo';
 import UserBlock from '../../user-block/user-block';
-import FilmCardPoster from '../../film-card/film-card-poster';
-import FilmCardBg from '../../film-card/film-card-bg';
-import {ImgDataType} from '../../../types/img-data-type';
 import AddReviewForm from '../../add-review-form/add-review-form';
+import FilmCardImg from '../../film-card/film-card';
 export default AddReviewPage;
 
-type AddReviewPageProps = {
-  bgData: ImgDataType;
-  posterData: ImgDataType;
-}
-function AddReviewPage({bgData, posterData} : AddReviewPageProps) {
+function AddReviewPage() {
   return (
     <body>
       <section className="film-card film-card--full">
         <div className="film-card__header">
-          <FilmCardBg imgSrc={bgData.imgSrc} imgAlt={bgData.imgAlt}/>
+          <FilmCardImg imgSrc={'img/bg-the-grand-budapest-hotel.jpg'} imgAlt={'The Grand Budapest Hotel'} className={'film-card__bg'}></FilmCardImg>
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header">
             <Logo logoClassName="logo__link"/>
@@ -34,7 +28,7 @@ function AddReviewPage({bgData, posterData} : AddReviewPageProps) {
             </nav>
             <UserBlock/>
           </header>
-          <FilmCardPoster imgSrc={posterData.imgSrc} imgAlt={posterData.imgAlt}/>
+          <FilmCardImg imgSrc={'img/the-grand-budapest-hotel-poster.jpg'} imgAlt={'The Grand Budapest Hotel poster'} className={'film-card__poster'} width={218} height={327}></FilmCardImg>
         </div>
         <AddReviewForm/>
       </section>
