@@ -32,7 +32,7 @@ function FilmCardCatalog({filmId, video, filmTitle, setId} : FilmCardCatalogProp
         muted
       />
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoute.Film}>
+        <Link className="small-film-card__link" to={AppRoute.Film.replace('id', `${filmId}`)}>
           {filmTitle}
         </Link>
       </h3>

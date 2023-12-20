@@ -1,17 +1,17 @@
-import Logo from '../../../logo/logo';
-import UserBlock from '../../../user-block/user-block';
-import Footer from '../../../footer/footer';
+import Logo from '../../logo/logo';
+import UserBlock from '../../user-block/user-block';
+import Footer from '../../footer/footer';
 import {Link} from 'react-router-dom';
-import FilmsList from '../../../films-list/films-list';
-import {Films} from '../../../../types/film-type';
-import {AppRoute} from '../../../../consts';
+import FilmsList from '../../films-list/films-list';
+import {Films} from '../../../types/film-type';
+import {AppRoute} from '../../../consts';
 
-export default MoviePage;
+export default FilmPage;
 
-type MoviePageProps = {
+type FilmPageProps = {
   films: Films;
 }
-function MoviePage({films} : MoviePageProps){
+function FilmPage({films} : FilmPageProps){
   return(
     <body>
       <section className="film-card film-card--full">
@@ -94,7 +94,7 @@ function MoviePage({films} : MoviePageProps){
                 <p className="film-card__starring">
                   <strong>
                     Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe
-                  and other
+                    and other
                   </strong>
                 </p>
               </div>
@@ -105,7 +105,7 @@ function MoviePage({films} : MoviePageProps){
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsList films={films}/>
+          <FilmsList films={films} filmsCount={4}/>
         </section>
         <Footer/>
       </div>

@@ -3,8 +3,8 @@ import {VideoType} from '../../types/video-type';
 
 type VideoPlayerProps = {
   video: VideoType;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   className?: string;
   muted: boolean;
   isHovered: boolean;

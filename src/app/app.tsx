@@ -3,13 +3,13 @@ import {AppRoute, AuthorizationStatus} from '../consts';
 import MainPage from '../components/pages/main-page/main-page';
 import SignInPage from '../components/pages/sign-in-directory/sign-in-page/sign-in-page';
 import MyListPage from '../components/pages/my-list-page/my-list-page';
-import MoviePage from '../components/pages/movie-page-directory/movie-page/movie-page';
 import AddReviewPage from '../components/pages/add-review-page/add-review-page';
 import PlayerPage from '../components/pages/player-directory/player-page/player-page';
 import NotFoundPage from '../components/pages/not-found-page/not-found-page';
 import PrivateRoute from '../components/private-route/private-route';
 import {Films} from '../types/film-type';
 import {VideoType} from '../types/video-type';
+import FilmPage from '../components/pages/film-page/film-page';
 
 export default App;
 
@@ -21,6 +21,7 @@ type AppProps = {
   video: VideoType;
 }
 function App(props : AppProps) : JSX.Element {
+
   return (
     <BrowserRouter>
       <Routes>
@@ -42,7 +43,7 @@ function App(props : AppProps) : JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage films={{...props}.films}/>}
+          element={<FilmPage films={{...props}.films}/>}
         />
         <Route
           path={AppRoute.AddReview}

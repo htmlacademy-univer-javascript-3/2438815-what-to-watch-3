@@ -4,12 +4,14 @@ import {Films} from '../../types/film-type';
 
 type FilmsListProps = {
   films: Films;
+  filmsCount?: number;
 }
-export default function FilmsList({films} : FilmsListProps) : JSX.Element {
+export default function FilmsList({films, filmsCount} : FilmsListProps) : JSX.Element {
   const [, setSelectedCardId] = useState<number| null | undefined>();
+  const catalog = typeof filmsCount === 'undefined' ? films : films.slice(0, filmsCount);
   return(
     <div className="catalog__films-list">
-      {films.map((filmsElement) => {
+      {catalog.map((filmsElement) => {
         const keyValue = filmsElement.id;
         return (<FilmCardCatalog key={keyValue} filmId={keyValue} filmTitle={filmsElement.title} video={filmsElement.video} setId = {setSelectedCardId}/>);
       })}

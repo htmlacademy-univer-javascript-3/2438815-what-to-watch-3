@@ -1,16 +1,17 @@
-import Logo from '../../../logo/logo';
-import UserBlock from '../../../user-block/user-block';
-import Footer from '../../../footer/footer';
+import Logo from '../logo/logo';
+import UserBlock from '../user-block/user-block';
+import Footer from '../footer/footer';
 import {Link} from 'react-router-dom';
-import FilmsList from '../../../films-list/films-list';
-import {Films} from '../../../../types/film-type';
+import FilmsList from '../films-list/films-list';
+import {Films} from '../../types/film-type';
+import {AppRoute} from '../../consts';
 
-export default MovieInListPage;
+export default MoviePageOverview;
 
-type MovieInListPageProps = {
+type MoviePageProps = {
   films: Films;
 }
-function MovieInListPage({films}: MovieInListPageProps){
+function MoviePageOverview({films} : MoviePageProps){
   return(
     <body>
       <section className="film-card film-card--full">
@@ -32,19 +33,25 @@ function MovieInListPage({films}: MovieInListPageProps){
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
+                  <Link to={AppRoute.Player}>
+                    <svg viewBox="0 0 19 19" width="19" height="19">
+                      <use xlinkHref="#play-s"></use>
+                    </svg>
+                  </Link>
                   <span>Play</span>
                 </button>
                 <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 18 14" width="18" height="14">
-                    <use xlinkHref="#in-list"></use>
-                  </svg>
+                  <Link to={AppRoute.MyList}>
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  </Link>
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to="add-review.html" className="btn film-card__button">Add review</Link>
+                <Link to={AppRoute.AddReview} className="btn film-card__button">
+                  Add review
+                </Link>
               </div>
             </div>
           </div>
@@ -58,13 +65,13 @@ function MovieInListPage({films}: MovieInListPageProps){
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <Link to="#" className="film-nav__link">Overview</Link>
+                    <Link to="movie-page-directory/movie-page#" className="film-nav__link">Overview</Link>
                   </li>
                   <li className="film-nav__item">
-                    <Link to="#" className="film-nav__link">Details</Link>
+                    <Link to="movie-page-directory/movie-page#" className="film-nav__link">Details</Link>
                   </li>
                   <li className="film-nav__item">
-                    <Link to="#" className="film-nav__link">Reviews</Link>
+                    <Link to="movie-page-directory/movie-page#" className="film-nav__link">Reviews</Link>
                   </li>
                 </ul>
               </nav>
@@ -86,7 +93,8 @@ function MovieInListPage({films}: MovieInListPageProps){
                 <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
                 <p className="film-card__starring">
                   <strong>
-                    Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other
+                    Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe
+                  and other
                   </strong>
                 </p>
               </div>
@@ -97,7 +105,7 @@ function MovieInListPage({films}: MovieInListPageProps){
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsList films={films}/>
+          <FilmsList films={films} filmsCount={4}/>
         </section>
         <Footer/>
       </div>

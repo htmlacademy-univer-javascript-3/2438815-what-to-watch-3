@@ -1,11 +1,11 @@
-import Logo from '../../../logo/logo';
-import UserBlock from '../../../user-block/user-block';
-import Footer from '../../../footer/footer';
+import Logo from '../logo/logo';
+import UserBlock from '../user-block/user-block';
+import Footer from '../footer/footer';
 import {Link} from 'react-router-dom';
-import FilmsList from '../../../films-list/films-list';
-import {Films} from '../../../../types/film-type';
-import ReviewsList from '../../../reviews-list/reviews-list';
-import {Reviews} from '../../../../types/review-type';
+import FilmsList from '../films-list/films-list';
+import {Films} from '../../types/film-type';
+import ReviewsList from '../reviews-list/reviews-list';
+import {Reviews} from '../../types/review-type';
 
 export default MovieReviewsPage;
 
