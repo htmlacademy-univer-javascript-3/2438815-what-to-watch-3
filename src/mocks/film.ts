@@ -1,12 +1,12 @@
 import {Films} from '../types/film-type.ts';
-import {genres, ratings} from '../consts';
-
+import {genreLabels} from '../consts/genre-labels';
+import {ratings} from '../consts/ratings';
 export const films : Films =
   [
     {
       id: 1,
       title: 'Le Fabuleux Destin d\'Amélie Poulain',
-      genre: [genres.Romance, genres.Comedy],
+      genre: [genreLabels.Romance, genreLabels.Comedy],
       releaseYear: 2001,
       video: {
         src: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -23,7 +23,7 @@ export const films : Films =
     {
       id: 2,
       title: 'La La Land',
-      genre: [genres.Comedy, genres.Drama],
+      genre: [genreLabels.Comedy, genreLabels.Drama],
       releaseYear: 2016,
       video: {
         src: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -40,7 +40,7 @@ export const films : Films =
     {
       id: 3,
       title: 'Pulp Fiction',
-      genre: [genres.Crime, genres.Drama],
+      genre: [genreLabels.Crime, genreLabels.Drama],
       releaseYear: 1994,
       video: {
         src: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -57,7 +57,7 @@ export const films : Films =
     {
       id: 4,
       title: 'The Lion King',
-      genre: [genres.Drama, genres.Comedy, genres.KidsAndFamily],
+      genre: [genreLabels.Drama, genreLabels.Comedy, genreLabels.KidsAndFamily],
       releaseYear: 1994,
       video: {
         src: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -74,7 +74,7 @@ export const films : Films =
     {
       id: 5,
       title: 'Exit Through the Gift Shop',
-      genre: [genres.Documentary, genres.Comedy],
+      genre: [genreLabels.Documentary, genreLabels.Comedy],
       releaseYear: 2010,
       video: {
         src: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -91,7 +91,7 @@ export const films : Films =
     {
       id: 6,
       title: 'The Matrix',
-      genre: [genres.Drama, genres.SciFi],
+      genre: [genreLabels.Drama, genreLabels.SciFi],
       releaseYear: 1999,
       video: {
         src: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -108,7 +108,7 @@ export const films : Films =
     {
       id: 7,
       title: 'It',
-      genre: [genres.Horror],
+      genre: [genreLabels.Horror],
       releaseYear: 2017,
       video: {
         src: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
@@ -125,7 +125,7 @@ export const films : Films =
     {
       id: 8,
       title: 'L\'appartement',
-      genre: [genres.Drama, genres.Romance, genres.Thriller],
+      genre: [genreLabels.Drama, genreLabels.Romance, genreLabels.Thriller],
       releaseYear: 1996,
       video: {
         src: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',

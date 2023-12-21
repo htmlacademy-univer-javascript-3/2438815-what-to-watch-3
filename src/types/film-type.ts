@@ -1,4 +1,3 @@
-import {genres} from '../consts';
 import {VideoType} from './video-type';
 import {RatingType} from './rating-type';
 import {ImgType} from './img-type';
@@ -6,7 +5,7 @@ import {ImgType} from './img-type';
 export type FilmType = {
   id: number;
   title: string;
-  genre: genres[];
+  genre: string[];
   releaseYear: number;
   rating: RatingType;
   description: string;

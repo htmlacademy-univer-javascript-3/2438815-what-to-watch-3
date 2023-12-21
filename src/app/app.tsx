@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../consts';
+import {AuthorizationStatus} from '../consts/autorization-status';
+import {AppRoute} from '../consts/app-route';
 import MainPage from '../components/pages/main-page/main-page';
 import SignInPage from '../components/pages/sign-in-directory/sign-in-page/sign-in-page';
 import MyListPage from '../components/pages/my-list-page/my-list-page';

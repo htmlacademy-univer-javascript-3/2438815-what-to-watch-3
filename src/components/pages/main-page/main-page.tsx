@@ -2,11 +2,11 @@ import Logo from '../../logo/logo';
 import Footer from '../../footer/footer';
 import UserBlock from '../../user-block/user-block';
 import GenresList from '../../genres-list/genres-list';
-import {Films} from '../../../types/film-type';
 import FilmsList from '../../films-list/films-list';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../consts';
+import {AppRoute} from '../../../consts/app-route';
 import FilmCardImg from '../../film-card/film-card-img';
+import {useAppSelector} from '../../../hooks';
 
 export default MainPage;
 
@@ -14,9 +14,8 @@ type MainPageProps = {
   promoFilmTitle : string;
   promoFilmGenre : string;
   promoFilmYear : number;
-  films: Films;
 }
-function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear, films } : MainPageProps) : JSX.Element {
+function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear} : MainPageProps) : JSX.Element {
   return (
     <body>
       <section className="film-card">
@@ -68,7 +67,7 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear, films } : Mai
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList/>
-          <FilmsList films={films}/>
+          <FilmsList films={useAppSelector((state) => state.genreFilmsList)}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>

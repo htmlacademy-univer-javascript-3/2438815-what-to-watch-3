@@ -5,8 +5,9 @@ import Footer from '../../footer/footer';
 import {Link} from 'react-router-dom';
 import FilmsList from '../../films-list/films-list';
 import {Films, FilmType} from '../../../types/film-type';
-import {AppRoute, tabNavLabels} from '../../../consts';
-import TabNavElement from '../../tab/tab';
+import {tabLabels} from '../../../consts/tab-labels';
+import {AppRoute} from '../../../consts/app-route';
+import TabNavElement from '../../tab-navigation-element/tab-navigation-element';
 import FilmOverview from '../../tabs/overview';
 import FilmDetails from '../../tabs/details';
 import FilmReviews from '../../tabs/reviews';
@@ -22,7 +23,7 @@ type FilmPageProps = {
   reviews: Reviews;
 }
 function FilmPage({films, film, reviews} : FilmPageProps){
-  const [activeLabel, setActiveLabel] = useState<string>(tabNavLabels.Overview);
+  const [activeLabel, setActiveLabel] = useState<string>(tabLabels.Overview);
   const tabs: TabsType = [
     {label: 'Overview', tab: <FilmOverview film={film}/>},
     {label: 'Details', tab: <FilmDetails film={film}/>},
@@ -42,7 +43,7 @@ function FilmPage({films, film, reviews} : FilmPageProps){
             <div className="film-card__desc">
               <h2 className="film-card__title">{film.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{film.genre}</span>
+                <span className="film-card__genre">{film.genre.join(', ')}</span>
                 <span className="film-card__year">{film.releaseYear}</span>
               </p>
               <div className="film-card__buttons">

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../consts';
+import {AppRoute} from '../../consts/app-route';
 import VideoPlayer from '../videoplayer/videoplayer';
 import {VideoType} from '../../types/video-type';
 export default FilmCardCatalog;
