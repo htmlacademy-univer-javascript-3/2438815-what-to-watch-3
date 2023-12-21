@@ -1,4 +1,5 @@
-import {AppRoute, AuthorizationStatus} from '../../consts';
+import {AppRoute} from '../../consts/app-route';
+import {AuthorizationStatus} from '../../consts/autorization-status';
 import {Navigate} from 'react-router-dom';
 export default PrivateRoute;
 
