@@ -3,13 +3,14 @@ import {AppRoute, AuthorizationStatus} from '../consts';
 import MainPage from '../components/pages/main-page/main-page';
 import SignInPage from '../components/pages/sign-in-directory/sign-in-page/sign-in-page';
 import MyListPage from '../components/pages/my-list-page/my-list-page';
-import MoviePage from '../components/pages/movie-page-directory/movie-page/movie-page';
 import AddReviewPage from '../components/pages/add-review-page/add-review-page';
 import PlayerPage from '../components/pages/player-directory/player-page/player-page';
 import NotFoundPage from '../components/pages/not-found-page/not-found-page';
 import PrivateRoute from '../components/private-route/private-route';
 import {Films} from '../types/film-type';
 import {VideoType} from '../types/video-type';
+import FilmPage from '../components/pages/film-page/film-page';
+import {Reviews} from '../types/review-type';
 
 export default App;
 
@@ -19,8 +20,14 @@ type AppProps = {
   promoFilmYear : number;
   films: Films;
   video: VideoType;
+  reviews: Reviews;
 }
 function App(props : AppProps) : JSX.Element {
+  const appProps = {...props};
+  const films = appProps.films;
+  const reviews = appProps.reviews;
+  const video = appProps.video;
+
   return (
     <BrowserRouter>
       <Routes>
@@ -36,13 +43,13 @@ function App(props : AppProps) : JSX.Element {
           path={AppRoute.MyList}
           element = {
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListPage films={{...props}.films}/>
+              <MyListPage films={films}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage films={{...props}.films}/>}
+          element={<FilmPage films={films} film={films[0]} reviews={reviews}/>}
         />
         <Route
           path={AppRoute.AddReview}
@@ -50,7 +57,7 @@ function App(props : AppProps) : JSX.Element {
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerPage video={{...props}.video}/>}
+          element={<PlayerPage video={video}/>}
         />
         <Route
           path='*'

@@ -1,5 +1,7 @@
 import {genres} from '../consts';
 import {VideoType} from './video-type';
+import {RatingType} from './rating-type';
+import {ImgType} from './img-type';
 
 export type FilmType = {
   id: number;
@@ -12,12 +14,8 @@ export type FilmType = {
   starring: string[];
   runTime: string;
   video: VideoType;
-}
-
-export type RatingType = {
-  score: number;
-  level: string;
-  count: number;
+  poster: ImgType;
+  bg: ImgType;
 }
 
 export type Films = FilmType[];

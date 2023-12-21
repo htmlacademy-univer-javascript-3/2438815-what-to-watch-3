@@ -10,7 +10,7 @@ function AddReviewPage() {
     <body>
       <section className="film-card film-card--full">
         <div className="film-card__header">
-          <FilmCardImg imgSrc={'img/bg-the-grand-budapest-hotel.jpg'} imgAlt={'The Grand Budapest Hotel'} className={'film-card__bg'}></FilmCardImg>
+          <FilmCardImg img={{src: 'img/bg-the-grand-budapest-hotel.jpg', alt : 'The Grand Budapest Hotel'}} className={'film-card__bg'}></FilmCardImg>
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header">
             <Logo logoClassName="logo__link"/>
@@ -28,7 +28,7 @@ function AddReviewPage() {
             </nav>
             <UserBlock/>
           </header>
-          <FilmCardImg imgSrc={'img/the-grand-budapest-hotel-poster.jpg'} imgAlt={'The Grand Budapest Hotel poster'} className={'film-card__poster'} width={218} height={327}></FilmCardImg>
+          <FilmCardImg img={{src: 'img/the-grand-budapest-hotel-poster.jpg', alt : 'The Grand Budapest Hotel poster'}} className={'film-card__poster film-card__poster--small'} width={218} height={327}></FilmCardImg>
         </div>
         <AddReviewForm/>
       </section>
