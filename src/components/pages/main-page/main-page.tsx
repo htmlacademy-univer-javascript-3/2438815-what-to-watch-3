@@ -6,7 +6,8 @@ import FilmsList from '../../films-list/films-list';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../consts/app-route';
 import FilmCardImg from '../../film-card/film-card-img';
-import {useAppSelector} from '../../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
+import {incVisibleCountAction} from '../../../store/action';
 
 export default MainPage;
 
@@ -16,6 +17,8 @@ type MainPageProps = {
   promoFilmYear : number;
 }
 function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear} : MainPageProps) : JSX.Element {
+  const dispatch = useAppDispatch();
+  const visibleFilmCardsCount = useAppSelector((state) => state.visibleFilmCardsCount);
   return (
     <body>
       <section className="film-card">
@@ -67,9 +70,14 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear} : MainPagePro
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList/>
-          <FilmsList films={useAppSelector((state) => state.genreFilmsList)}/>
+          <FilmsList films={useAppSelector((state) => state.genreFilmsList)} filmsCount={visibleFilmCardsCount}/>
           <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            <button className="catalog__button" type="button" onClick={() => {
+              dispatch(incVisibleCountAction());
+            }}
+            >
+              Show more
+            </button>
           </div>
         </section>
         <Footer/>
