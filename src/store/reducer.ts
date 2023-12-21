@@ -1,27 +1,24 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {getActiveGenreFilms, getAllGenresFilms} from './action';
+import {getActiveGenreFilmsAction} from './action';
 import {Films} from '../types/film-type';
 import {films} from '../mocks/film';
+import {genreLabels} from '../consts/genre-labels';
 
 type stateType = {
   genre: string;
   genreFilmsList: Films;
 }
 
-const initialState : stateType = {
-  genre: 'All genres',
+const activeState : stateType = {
+  genre: genreLabels.All,
   genreFilmsList: films,
 };
 
-export const stateReducer = createReducer(initialState, (builder) => {
-  builder.addCase(getAllGenresFilms, (state) => {
-    state.genre = 'All genres';
-    state.genreFilmsList = films;
-  });
-  builder.addCase(getActiveGenreFilms, (state, action) => {
+export const stateReducer = createReducer(activeState, (builder) => {
+  builder.addCase(getActiveGenreFilmsAction, (state, action) => {
     const genre = action.payload;
     state.genre = genre;
-    state.genreFilmsList = films.filter((film) => film.genre.includes(genre));
+    state.genreFilmsList = genre === genreLabels.All ? films : films.filter((film) => film.genre.includes(genre));
   });
 });
 

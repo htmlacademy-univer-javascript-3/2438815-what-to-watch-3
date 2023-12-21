@@ -7,7 +7,7 @@ import FilmsList from '../../films-list/films-list';
 import {Films, FilmType} from '../../../types/film-type';
 import {tabLabels} from '../../../consts/tab-labels';
 import {AppRoute} from '../../../consts/app-route';
-import TabNavElement from '../../tab/tab';
+import TabNavElement from '../../tab-navigation-element/tab-navigation-element';
 import FilmOverview from '../../tabs/overview';
 import FilmDetails from '../../tabs/details';
 import FilmReviews from '../../tabs/reviews';

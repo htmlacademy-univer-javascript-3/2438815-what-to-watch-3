@@ -1,11 +1,13 @@
 export enum genreLabels {
-  Comedies = 'Comedies',
+  All = 'All genres',
+  Comedy = 'Comedy',
   Crime = 'Crime',
   Documentary = 'Documentary',
-  Dramas = 'Dramas',
+  Drama = 'Drama',
   Horror = 'Horror',
   KidsAndFamily = 'Kids & Family',
   Romance = 'Romance',
   SciFi = 'Sci-Fi',
-  Thrillers = 'Thrillers'
+  Thriller = 'Thriller'
 }
+
