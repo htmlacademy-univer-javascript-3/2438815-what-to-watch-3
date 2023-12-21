@@ -12,7 +12,7 @@ import FilmDetails from '../../tabs/details';
 import FilmReviews from '../../tabs/reviews';
 import {Reviews} from '../../../types/review-type';
 import {TabsType} from '../../../types/tab-type';
-import FilmCardImg from "../../film-card/film-card-img";
+import FilmCardImg from '../../film-card/film-card-img';
 
 export default FilmPage;
 
@@ -72,9 +72,7 @@ function FilmPage({films, film, reviews} : FilmPageProps){
         </div>
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
-            <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327"/>
-            </div>
+            <FilmCardImg img={film.poster} className={'film-card__poster film-card__poster--big'}></FilmCardImg>
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
