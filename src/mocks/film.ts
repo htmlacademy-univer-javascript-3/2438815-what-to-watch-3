@@ -17,6 +17,8 @@ export const films : Films =
       director: 'Jean-Pierre Jeunet',
       starring: ['Audrey Tautou', 'Mathieu Kassovitz'],
       runTime: '2h 02m',
+      poster: {src: 'img/the-grand-budapest-hotel-poster.jpg', alt: 'The Grand Budapest Hotel poster'},
+      bg: {src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel'},
     },
     {
       id: 2,
@@ -32,6 +34,8 @@ export const films : Films =
       director: 'Damien Chazelle',
       starring: ['Ryan Gosling', 'Emma Stone'],
       runTime: '2h 08m',
+      poster: {src: 'img/the-grand-budapest-hotel-poster.jpg', alt: 'The Grand Budapest Hotel poster'},
+      bg: {src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel'},
     },
     {
       id: 3,
@@ -47,6 +51,8 @@ export const films : Films =
       starring: ['John Travolta', 'Samuel L. Jackson'],
       runTime: '2h 34m',
       rating: { score: 8.9, level: ratings.Eight, count: 1935000 },
+      poster: {src: 'img/the-grand-budapest-hotel-poster.jpg', alt: 'The Grand Budapest Hotel poster'},
+      bg: {src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel'},
     },
     {
       id: 4,
@@ -62,6 +68,8 @@ export const films : Films =
       starring: ['Matthew Broderick', 'Jeremy Irons'],
       runTime: '1h 28m',
       rating: { score: 8.5, level: ratings.Eight, count: 972000 },
+      poster: {src: 'img/the-grand-budapest-hotel-poster.jpg', alt: 'The Grand Budapest Hotel poster'},
+      bg: {src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel'},
     },
     {
       id: 5,
@@ -77,6 +85,8 @@ export const films : Films =
       starring: ['Banksy', 'Mr. Brainwash'],
       runTime: '1h 27m',
       rating: {score: 8.3, level: 'Eight', count: 784000},
+      poster: {src: 'img/the-grand-budapest-hotel-poster.jpg', alt: 'The Grand Budapest Hotel poster'},
+      bg: {src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel'},
     },
     {
       id: 6,
@@ -92,6 +102,8 @@ export const films : Films =
       starring: ['Keanu Reeves', 'Carrie-Anne Moss'],
       runTime: '2h 16m',
       rating: { score: 8.7, level: 'Eight', count: 611000 },
+      poster: {src: 'img/the-grand-budapest-hotel-poster.jpg', alt: 'The Grand Budapest Hotel poster'},
+      bg: {src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel'},
     },
     {
       id: 7,
@@ -107,6 +119,8 @@ export const films : Films =
       starring: ['Bill Skarsgård', 'Jaeden Martell'],
       runTime: '2h 15m',
       rating: { score: 7.3, level: 'Seven', count: 440000 },
+      poster: {src: 'img/the-grand-budapest-hotel-poster.jpg', alt: 'The Grand Budapest Hotel poster'},
+      bg: {src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel'},
     },
     {
       id: 8,
@@ -122,5 +136,7 @@ export const films : Films =
       starring: ['Vincent Cassel', 'Monica Bellucci'],
       runTime: '1h 56m',
       rating: { score: 8.3, level: 'Eight', count: 784000 },
+      poster: {src: 'img/the-grand-budapest-hotel-poster.jpg', alt: 'The Grand Budapest Hotel poster'},
+      bg: {src: 'img/bg-the-grand-budapest-hotel.jpg', alt: 'The Grand Budapest Hotel'},
     },
   ];

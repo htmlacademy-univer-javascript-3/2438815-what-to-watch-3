@@ -20,10 +20,8 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear, films } : Mai
   return (
     <body>
       <section className="film-card">
-        <FilmCardImg imgSrc={'img/bg-the-grand-budapest-hotel.jpg'} imgAlt={'The Grand Budapest Hotel'} className={'film-card__bg'}></FilmCardImg>
-
+        <FilmCardImg img={{src: 'img/bg-the-grand-budapest-hotel.jpg', alt : 'The Grand Budapest Hotel'}} className={'film-card__bg'}></FilmCardImg>
         <h1 className="visually-hidden">WTW</h1>
-
         <header className="page-header film-card__head">
           <Logo logoClassName="logo__link"/>
           <UserBlock/>
@@ -31,7 +29,7 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear, films } : Mai
 
         <div className="film-card__wrap">
           <div className="film-card__info">
-            <FilmCardImg imgSrc={'img/the-grand-budapest-hotel-poster.jpg'} imgAlt={'The Grand Budapest Hotel poster'} className={'film-card__poster'} width={218} height={327}></FilmCardImg>
+            <FilmCardImg img={{src: 'img/the-grand-budapest-hotel-poster.jpg', alt : 'The Grand Budapest Hotel poster'}} className={'film-card__poster'} width={218} height={327}></FilmCardImg>
 
             <div className="film-card__desc">
               <h2 className="film-card__title">{promoFilmTitle}</h2>

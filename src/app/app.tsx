@@ -10,6 +10,7 @@ import PrivateRoute from '../components/private-route/private-route';
 import {Films} from '../types/film-type';
 import {VideoType} from '../types/video-type';
 import FilmPage from '../components/pages/film-page/film-page';
+import {Reviews} from '../types/review-type';
 
 export default App;
 
@@ -19,8 +20,13 @@ type AppProps = {
   promoFilmYear : number;
   films: Films;
   video: VideoType;
+  reviews: Reviews;
 }
 function App(props : AppProps) : JSX.Element {
+  const appProps = {...props};
+  const films = appProps.films;
+  const reviews = appProps.reviews;
+  const video = appProps.video;
 
   return (
     <BrowserRouter>
@@ -37,13 +43,13 @@ function App(props : AppProps) : JSX.Element {
           path={AppRoute.MyList}
           element = {
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListPage films={{...props}.films}/>
+              <MyListPage films={films}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmPage films={{...props}.films}/>}
+          element={<FilmPage films={films} film={films[0]} reviews={reviews}/>}
         />
         <Route
           path={AppRoute.AddReview}
@@ -51,7 +57,7 @@ function App(props : AppProps) : JSX.Element {
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerPage video={{...props}.video}/>}
+          element={<PlayerPage video={video}/>}
         />
         <Route
           path='*'

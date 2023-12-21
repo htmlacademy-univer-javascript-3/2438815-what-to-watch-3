@@ -43,11 +43,8 @@ export enum ratings {
   Ten = 'Brilliant'
 }
 
-export const bgData = {
-  imgSrc: 'img/bg-the-grand-budapest-hotel.jpg',
-  imgAlt: 'The Grand Budapest Hotel'
-};
-export const posterData = {
-  imgSrc: 'img/bg-the-grand-budapest-hotel-poster.jpg',
-  imgAlt: 'The Grand Budapest Hotel poster'
-};
+export enum tabNavLabels {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews'
+}
