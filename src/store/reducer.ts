@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {getActiveGenreFilmsAction} from './action';
+import {setActiveGenreFilmsAction} from './action';
 import {Films} from '../types/film-type';
 import {films} from '../mocks/film';
 import {genreLabels} from '../consts/genre-labels';
@@ -15,7 +15,7 @@ const activeState : stateType = {
 };
 
 export const stateReducer = createReducer(activeState, (builder) => {
-  builder.addCase(getActiveGenreFilmsAction, (state, action) => {
+  builder.addCase(setActiveGenreFilmsAction, (state, action) => {
     const genre = action.payload;
     state.genre = genre;
     state.genreFilmsList = genre === genreLabels.All ? films : films.filter((film) => film.genre.includes(genre));

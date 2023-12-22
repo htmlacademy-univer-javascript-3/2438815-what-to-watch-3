@@ -7,6 +7,8 @@ import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../consts/app-route';
 import FilmCardImg from '../../film-card/film-card-img';
 import {useAppSelector} from '../../../hooks';
+import {useCallback, useState} from 'react';
+import ShowMoreButton from '../../show-more-button/show-more-button';
 
 export default MainPage;
 
@@ -15,7 +17,13 @@ type MainPageProps = {
   promoFilmGenre : string;
   promoFilmYear : number;
 }
+
+
 function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear} : MainPageProps) : JSX.Element {
+  const filmsList = useAppSelector((state) => state.genreFilmsList);
+  const [visibleFilmCardsCount, setVisibleFilmCardsCount] = useState(Math.min(8, filmsList.length));
+  const onClickShowMore = useCallback(() => setVisibleFilmCardsCount(Math.min(visibleFilmCardsCount + 8, filmsList.length)), [setVisibleFilmCardsCount]);
+  const onClickGenres = useCallback(() => setVisibleFilmCardsCount(Math.min(8, filmsList.length)), [setVisibleFilmCardsCount]);
   return (
     <body>
       <section className="film-card">
@@ -66,11 +74,9 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear} : MainPagePro
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenresList/>
-          <FilmsList films={useAppSelector((state) => state.genreFilmsList)}/>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <GenresList onClickProp={onClickGenres}/>
+          <FilmsList films={filmsList} filmsCount={visibleFilmCardsCount}/>
+          { visibleFilmCardsCount < filmsList.length && <ShowMoreButton onClickProp={onClickShowMore}></ShowMoreButton> }
         </section>
         <Footer/>
       </div>
