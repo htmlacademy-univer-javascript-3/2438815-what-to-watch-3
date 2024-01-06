@@ -2,9 +2,8 @@ import {useState} from 'react';
 import Logo from '../../logo/logo';
 import UserBlock from '../../user-block/user-block';
 import Footer from '../../footer/footer';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import FilmsList from '../../films-list/films-list';
-import {Films, FilmType} from '../../../types/film-type';
 import {tabLabels} from '../../../consts/tab-labels';
 import {AppRoute} from '../../../consts/app-route';
 import TabNavElement from '../../tab-navigation-element/tab-navigation-element';
@@ -14,16 +13,19 @@ import FilmReviews from '../../tabs/reviews';
 import {Reviews} from '../../../types/review-type';
 import {TabsType} from '../../../types/tab-type';
 import FilmCardImg from '../../film-card/film-card-img';
+import {useAppSelector} from '../../../hooks';
+import {getAllFilms, getFilm} from '../../../store/getters';
 
 export default FilmPage;
 
 type FilmPageProps = {
-  films: Films;
-  film: FilmType;
   reviews: Reviews;
 }
-function FilmPage({films, film, reviews} : FilmPageProps){
+function FilmPage({reviews} : FilmPageProps){
   const [activeLabel, setActiveLabel] = useState<string>(tabLabels.Overview);
+  const films = useAppSelector(getAllFilms);
+  const film = useAppSelector(getFilm);
+  //const id = useParams().id;
   const tabs: TabsType = [
     {label: 'Overview', tab: <FilmOverview film={film}/>},
     {label: 'Details', tab: <FilmDetails film={film}/>},
@@ -33,7 +35,7 @@ function FilmPage({films, film, reviews} : FilmPageProps){
     <body>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
-          <FilmCardImg img={film.bg} className={'film-card__bg'}></FilmCardImg>
+          <FilmCardImg img={film?.backgroundImage} alt={film?.name} className={'film-card__bg'}></FilmCardImg>
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header film-card__head">
             <Logo logoClassName="logo__link"/>
@@ -41,10 +43,10 @@ function FilmPage({films, film, reviews} : FilmPageProps){
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{film.title}</h2>
+              <h2 className="film-card__title">{film?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{film.genre.join(', ')}</span>
-                <span className="film-card__year">{film.releaseYear}</span>
+                <span className="film-card__genre">{film?.genre}</span>
+                <span className="film-card__year">{film?.released}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -73,7 +75,7 @@ function FilmPage({films, film, reviews} : FilmPageProps){
         </div>
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
-            <FilmCardImg img={film.poster} className={'film-card__poster film-card__poster--big'}></FilmCardImg>
+            <FilmCardImg img={film?.backgroundImage} alt={film?.name} className={'film-card__poster film-card__poster--big'}></FilmCardImg>
             <div className="film-card__desc">
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">

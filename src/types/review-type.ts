@@ -1,9 +1,8 @@
 export type ReviewType = {
-  id: number;
-  filmId: number;
-  text: string;
-  author: string;
+  id: string;
   date: string;
+  user: string;
+  comment: string;
   rating: number;
 }
 
