@@ -1,6 +1,14 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {loadFilms, loadPromoFilm, setLoadingStatus, setActiveGenreFilmsAction, setError} from './action';
+import {
+  loadFilms,
+  loadPromoFilm,
+  requireAuthorization,
+  setActiveGenreFilmsAction,
+  setError,
+  setLoadingStatus
+} from './action';
 import {Film, Films, PromoFilm} from '../types/film-type';
+import {AuthorizationStatus} from "../consts/autorization-status";
 
 export type stateType = {
   currentFilm: Film | undefined;
@@ -10,6 +18,7 @@ export type stateType = {
   promoFilm: PromoFilm | undefined;
   error: string | null;
   isFilmsDataLoading: boolean;
+  authorizationStatus : AuthorizationStatus;
 }
 
 const activeState : stateType = {
@@ -20,6 +29,7 @@ const activeState : stateType = {
   promoFilm: undefined,
   error: null,
   isFilmsDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const stateReducer = createReducer(activeState, (builder) => {
@@ -41,6 +51,9 @@ export const stateReducer = createReducer(activeState, (builder) => {
     })
     .addCase(setLoadingStatus, (state, action) => {
       state.isFilmsDataLoading = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
