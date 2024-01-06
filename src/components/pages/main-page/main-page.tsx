@@ -9,25 +9,20 @@ import FilmCardImg from '../../film-card/film-card-img';
 import {useAppSelector} from '../../../hooks';
 import {useCallback, useState} from 'react';
 import ShowMoreButton from '../../show-more-button/show-more-button';
+import {getGenreFilms, getPromoFilm} from '../../../store/getters';
 
 export default MainPage;
 
-type MainPageProps = {
-  promoFilmTitle : string;
-  promoFilmGenre : string;
-  promoFilmYear : number;
-}
-
-
-function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear} : MainPageProps) : JSX.Element {
-  const filmsList = useAppSelector((state) => state.genreFilmsList);
+function MainPage() : JSX.Element {
+  const filmsList = useAppSelector(getGenreFilms);
+  const promoFilm = useAppSelector(getPromoFilm);
   const [visibleFilmCardsCount, setVisibleFilmCardsCount] = useState(Math.min(8, filmsList.length));
-  const onClickShowMore = useCallback(() => setVisibleFilmCardsCount(Math.min(visibleFilmCardsCount + 8, filmsList.length)), [setVisibleFilmCardsCount]);
-  const onClickGenres = useCallback(() => setVisibleFilmCardsCount(Math.min(8, filmsList.length)), [setVisibleFilmCardsCount]);
+  const onClickShowMore = () => setVisibleFilmCardsCount(Math.min(visibleFilmCardsCount + 8, filmsList.length));
+  const onClickGenres = useCallback(() => setVisibleFilmCardsCount(Math.min(8, filmsList.length)),[setVisibleFilmCardsCount]);
   return (
     <body>
       <section className="film-card">
-        <FilmCardImg img={{src: 'img/bg-the-grand-budapest-hotel.jpg', alt : 'The Grand Budapest Hotel'}} className={'film-card__bg'}></FilmCardImg>
+        <FilmCardImg img={promoFilm?.backgroundImage} alt={promoFilm?.name} className={'film-card__bg'}></FilmCardImg>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
           <Logo logoClassName="logo__link"/>
@@ -36,13 +31,13 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear} : MainPagePro
 
         <div className="film-card__wrap">
           <div className="film-card__info">
-            <FilmCardImg img={{src: 'img/the-grand-budapest-hotel-poster.jpg', alt : 'The Grand Budapest Hotel poster'}} className={'film-card__poster'} width={218} height={327}></FilmCardImg>
+            <FilmCardImg img={promoFilm?.backgroundImage} alt={promoFilm?.name} className={'film-card__poster'} width={218} height={327}></FilmCardImg>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilmTitle}</h2>
+              <h2 className="film-card__title">{promoFilm?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilmGenre}</span>
-                <span className="film-card__year">{promoFilmYear}</span>
+                <span className="film-card__genre">{promoFilm?.genre}</span>
+                <span className="film-card__year">{promoFilm?.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -62,7 +57,9 @@ function MainPage({ promoFilmTitle, promoFilmGenre, promoFilmYear} : MainPagePro
                       <use xlinkHref="#add"></use>
                     </svg>
                   </Link>
-                  <span>My list</span>
+                  <span>
+                    My list
+                  </span>
                   <span className="film-card__count">9</span>
                 </button>
               </div>

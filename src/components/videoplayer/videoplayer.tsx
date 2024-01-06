@@ -1,15 +1,15 @@
 import {useRef, useEffect} from 'react';
-import {VideoType} from '../../types/video-type';
 
 type VideoPlayerProps = {
-  video: VideoType;
-  width?: number;
-  height?: number;
+  videoLink: string;
+  poster: string;
+  width: number;
+  height: number;
   className?: string;
   muted: boolean;
   isHovered: boolean;
 }
-function VideoPlayer({video, className, muted, width, height, isHovered} : VideoPlayerProps) : JSX.Element{
+function VideoPlayer({videoLink, poster, width, height, className, muted, isHovered} : VideoPlayerProps) : JSX.Element{
   const refVideo = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const currentVideo = refVideo.current;
@@ -25,7 +25,7 @@ function VideoPlayer({video, className, muted, width, height, isHovered} : Video
   [isHovered]
   );
   return (
-    <video src={video.src} width={width} height={height} className={className} poster={video.posterPath} muted={muted} ref={refVideo} loop></video>
+    <video src={videoLink} width={width} height={height} className={className} poster={poster} muted={muted} ref={refVideo} loop></video>
   );
 }
 export default VideoPlayer;
