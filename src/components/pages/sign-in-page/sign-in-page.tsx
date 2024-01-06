@@ -1,7 +1,8 @@
-import Logo from '../../../logo/logo';
-import Footer from '../../../footer/footer';
+import Logo from '../../logo/logo';
+import Footer from '../../footer/footer';
 export default SignInPage;
 function SignInPage() : JSX.Element{
+
   return (
     <body>
       <div className="user-page">

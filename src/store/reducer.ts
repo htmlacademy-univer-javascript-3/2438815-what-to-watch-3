@@ -8,7 +8,7 @@ import {
   setLoadingStatus
 } from './action';
 import {Film, Films, PromoFilm} from '../types/film-type';
-import {AuthorizationStatus} from "../consts/autorization-status";
+import {AuthorizationStatus} from '../consts/autorization-status';
 
 export type stateType = {
   currentFilm: Film | undefined;
