@@ -6,6 +6,7 @@ export enum APIRoute {
   Favorite = '/favorite',
   ChangeFavoriteStatus = '/wtw/favorite/:filmId/:status',
   Comments = '/comments/:id',
+  CheckLogin = '/login',
   Login = '/login',
   Logout = '/logout'
 }

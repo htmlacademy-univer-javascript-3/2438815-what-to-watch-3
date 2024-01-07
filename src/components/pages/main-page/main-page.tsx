@@ -20,7 +20,7 @@ function MainPage() : JSX.Element {
   const onClickShowMore = () => setVisibleFilmCardsCount(Math.min(visibleFilmCardsCount + 8, filmsList.length));
   const onClickGenres = useCallback(() => setVisibleFilmCardsCount(Math.min(8, filmsList.length)),[setVisibleFilmCardsCount]);
   return (
-    <body>
+    <>
       <section className="film-card">
         <FilmCardImg img={promoFilm?.backgroundImage} alt={promoFilm?.name} className={'film-card__bg'}></FilmCardImg>
         <h1 className="visually-hidden">WTW</h1>
@@ -77,6 +77,6 @@ function MainPage() : JSX.Element {
         </section>
         <Footer/>
       </div>
-    </body>
+    </>
   );
 }

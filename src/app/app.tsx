@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {AuthorizationStatus} from '../consts/autorization-status';
 import {AppRoute} from '../consts/app-route';
 import MainPage from '../components/pages/main-page/main-page';
@@ -12,6 +12,8 @@ import FilmPage from '../components/pages/film-page/film-page';
 import {Reviews} from '../types/review-type';
 import {useAppSelector} from '../hooks';
 import {LoadingPage} from '../components/pages/loading-page/loading-page';
+import browserHistory from '../history-route/browser-history';
+import HistoryRouter from '../history-route/history-route';
 
 export default App;
 
@@ -27,7 +29,7 @@ function App({reviews} : AppProps) : JSX.Element {
     );
   }
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -62,6 +64,6 @@ function App({reviews} : AppProps) : JSX.Element {
           element={<NotFoundPage/>}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
