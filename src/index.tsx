@@ -6,9 +6,9 @@ import {promoFilmSettings} from './consts/promo-film-settings';
 import {reviews} from './mocks/review';
 import {store} from './store/index';
 import Error from './components/error/error';
-import {LoadingPage} from './components/pages/loading-page/loading-page';
-import {fetchFilmsAction, fetchPromoFilmAction} from './store/api-actions';
+import {checkAuthAction, fetchFilmsAction, fetchPromoFilmAction} from './store/api-actions';
 
+store.dispatch(checkAuthAction());
 store.dispatch(fetchFilmsAction());
 store.dispatch(fetchPromoFilmAction());
 
