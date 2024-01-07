@@ -1,5 +1,3 @@
-import {VideoType} from '../../../../types/video-type';
-
 export default PlayerPage;
 
 type PlayerPageProps = {

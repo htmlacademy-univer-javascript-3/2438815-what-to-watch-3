@@ -1,5 +1,5 @@
-import RatingItemsList from '../rating/rating';
 import React, {useState} from 'react';
+import RatingItemsList from '../rating/rating';
 export default AddReviewForm;
 function AddReviewForm() : JSX.Element {
   const [reviewText, setReviewText] = useState('');

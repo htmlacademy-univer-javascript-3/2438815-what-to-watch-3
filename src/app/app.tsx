@@ -9,20 +9,17 @@ import PlayerPage from '../components/pages/player-directory/player-page/player-
 import NotFoundPage from '../components/pages/not-found-page/not-found-page';
 import PrivateRoute from '../components/private-route/private-route';
 import FilmPage from '../components/pages/film-page/film-page';
-import {Reviews} from '../types/review-type';
 import {useAppSelector} from '../hooks';
 import {LoadingPage} from '../components/pages/loading-page/loading-page';
 import browserHistory from '../history-route/browser-history';
 import HistoryRouter from '../history-route/history-route';
+import {getAuthorizationStatus, getIsFilmDataLoading} from '../store/getters';
 
 export default App;
 
-type AppProps = {
-  reviews: Reviews;
-}
-function App({reviews} : AppProps) : JSX.Element {
-  const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+function App() : JSX.Element {
+  const isFilmsDataLoading = useAppSelector(getIsFilmDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
     return (
       <LoadingPage />
@@ -48,8 +45,8 @@ function App({reviews} : AppProps) : JSX.Element {
           }
         />
         <Route
-          path={AppRoute.Film}
-          element={<FilmPage reviews={reviews}/>}
+          path={AppRoute.Film()}
+          element={<FilmPage/>}
         />
         <Route
           path={AppRoute.AddReview}

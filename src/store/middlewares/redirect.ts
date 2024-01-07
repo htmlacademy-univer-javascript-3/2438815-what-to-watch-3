@@ -1,9 +1,9 @@
 import {PayloadAction} from '@reduxjs/toolkit';
 import browserHistory from '../../history-route/browser-history';
 import {Middleware} from 'redux';
-import {stateReducer} from '../reducer';
+import {combineReducer} from '../combine-reducer';
 
-type Reducer = ReturnType<typeof stateReducer>
+type Reducer = ReturnType<typeof combineReducer>
 export const redirect: Middleware<unknown, Reducer> =
   () =>
     (next) =>

@@ -9,8 +9,13 @@ import {
   requireAuthorization,
   setError,
   setLoadingStatus
-} from './action';
-import {Films, PromoFilm} from '../types/film-type';
+} from './main-app-actions/main-app-actions';
+import {
+  loadFilm,
+  loadSimilarFilms,
+  loadReviews
+} from './film-actions/film-actions';
+import {Film, Films, PromoFilm} from '../types/film-type';
 import {APIRoute} from '../consts/api-route';
 import {AuthorizationStatus} from '../consts/autorization-status';
 import {TIMEOUT_SHOW_ERROR} from '../consts/consts';
@@ -19,6 +24,7 @@ import {AuthData} from '../types/auth-data-type';
 import {User} from '../types/user-type';
 import {dropToken, saveToken} from '../api/token';
 import {AppRoute} from '../consts/app-route';
+import {Reviews} from '../types/review-type';
 
 export const clearErrorAction = createAsyncThunk(
   'film/clearError',
@@ -70,6 +76,45 @@ export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
   },
 );
 
+export const fetchFilm = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFilm',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Film>(APIRoute.Film(id));
+    try {
+      dispatch(loadFilm(data));
+      dispatch(redirectToRoute(AppRoute.Film(id)));
+    } catch {
+      dispatch(redirectToRoute(AppRoute.NotFoundPage));
+    }
+  },
+);
+export const fetchSimilarFilms = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchSimilarFilms',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Films>(APIRoute.Similar(id));
+    dispatch(loadSimilarFilms(data));
+  },
+);
+export const fetchReviews = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchSimilarFilms',
+  async (id, {dispatch, extra: api}) => {
+    const {data} = await api.get<Reviews>(APIRoute.Comments(id));
+    dispatch(loadReviews(data));
+  },
+);
+
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
@@ -79,7 +124,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     try {
       await api.get(APIRoute.CheckLogin);
-      dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+      dispatch(requireAuthorization(AuthorizationStatus.Auth));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }

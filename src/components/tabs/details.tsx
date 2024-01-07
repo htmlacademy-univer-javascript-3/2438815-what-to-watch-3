@@ -1,9 +1,9 @@
-import {FilmType} from '../../types/film-type';
+import {Film} from '../../types/film-type';
 
 export default FilmDetails;
 
 type FilmDetailsProps = {
-  film: FilmType;
+  film: Film;
 }
 function FilmDetails({film}: FilmDetailsProps){
   return(
@@ -31,11 +31,11 @@ function FilmDetails({film}: FilmDetailsProps){
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
-          <span className="film-card__details-value">{film.genre.join(', ')}</span>
+          <span className="film-card__details-value">{film.genre}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{film.releaseYear}</span>
+          <span className="film-card__details-value">{film.released}</span>
         </p>
       </div>
     </div>

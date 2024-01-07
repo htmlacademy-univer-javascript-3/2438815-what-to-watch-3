@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Logo from '../../logo/logo';
 import UserBlock from '../../user-block/user-block';
 import Footer from '../../footer/footer';
@@ -10,26 +10,35 @@ import TabNavElement from '../../tab-navigation-element/tab-navigation-element';
 import FilmOverview from '../../tabs/overview';
 import FilmDetails from '../../tabs/details';
 import FilmReviews from '../../tabs/reviews';
-import {Reviews} from '../../../types/review-type';
 import {TabsType} from '../../../types/tab-type';
 import FilmCardImg from '../../film-card/film-card-img';
-import {useAppSelector} from '../../../hooks';
-import {getAllFilms, getFilm} from '../../../store/getters';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
+import {getFilm, getReviews, getSimilar} from '../../../store/getters';
+import {fetchFilm, fetchReviews, fetchSimilarFilms} from '../../../store/api-actions';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 export default FilmPage;
-
-type FilmPageProps = {
-  reviews: Reviews;
-}
-function FilmPage({reviews} : FilmPageProps){
+function FilmPage(){
   const [activeLabel, setActiveLabel] = useState<string>(tabLabels.Overview);
-  const films = useAppSelector(getAllFilms);
   const film = useAppSelector(getFilm);
-  //const id = useParams().id;
+  const reviews = useAppSelector(getReviews);
+  const similarFilms = useAppSelector(getSimilar);
+  const id = useParams().id || '';
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!film || film.id !== id) {
+      dispatch(fetchFilm(id));
+      dispatch(fetchSimilarFilms(id));
+      dispatch(fetchReviews(id));
+    }
+  });
+  if (!film){
+    return (<NotFoundPage/>);
+  }
   const tabs: TabsType = [
     {label: 'Overview', tab: <FilmOverview film={film}/>},
     {label: 'Details', tab: <FilmDetails film={film}/>},
-    {label: 'Reviews', tab: <FilmReviews film={film} reviews={reviews}/>},
+    {label: 'Reviews', tab: <FilmReviews reviews={reviews}/>},
   ];
   return(
     <body>
@@ -90,7 +99,7 @@ function FilmPage({reviews} : FilmPageProps){
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmsList films={films} filmsCount={4}/>
+          <FilmsList films={similarFilms} filmsCount={4}/>
         </section>
         <Footer/>
       </div>

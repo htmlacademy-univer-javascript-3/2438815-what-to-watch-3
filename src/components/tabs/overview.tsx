@@ -1,18 +1,18 @@
-import {FilmType} from '../../types/film-type';
-
+import {Film} from '../../types/film-type';
+import {ratingLevelGenerate} from '../../functions/rating-level-generate/rating-level-generate';
 export default FilmOverview;
 
 type FilmOverviewProps = {
-  film: FilmType;
+  film: Film;
 }
 function FilmOverview({film} : FilmOverviewProps){
   return(
     <>
       <div className="film-rating">
-        <div className="film-rating__score">{film.rating.score}</div>
+        <div className="film-rating__score">{film.rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">{film.rating.level}</span>
-          <span className="film-rating__count">{film.rating.count} ratings</span>
+          <span className="film-rating__level">{ratingLevelGenerate(film.rating)}</span>
+          <span className="film-rating__count">{film.scoresCount} ratings</span>
         </p>
       </div>
       <div className="film-card__text">

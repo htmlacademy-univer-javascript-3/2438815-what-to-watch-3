@@ -1,11 +1,14 @@
-import {stateType} from './reducer';
+import {State} from '../types/state';
 
-export const getAllFilms = (state: stateType) => state.allFilms;
+export const getAllFilms = (state: State) => state.mainReducer.allFilms;
+export const getIsFilmDataLoading = (state: State) => state.mainReducer.isFilmsDataLoading;
 
-export const getGenreFilms = (state: stateType) => state.genreFilms;
-export const getPromoFilm = (state: stateType) => state.promoFilm;
-export const getFilm = (state: stateType) => state.currentFilm;
-export const getCurrentGenre = (state: stateType) => state.genre;
-export const getAuthorizationStatus = (state: stateType) => state.authorizationStatus;
+export const getGenreFilms = (state: State) => state.mainReducer.genreFilms;
+export const getPromoFilm = (state: State) => state.mainReducer.promoFilm;
+export const getCurrentGenre = (state: State) => state.mainReducer.genre;
+export const getAuthorizationStatus = (state: State) => state.mainReducer.authorizationStatus;
+export const getError = (state: State) => state.mainReducer.error;
 
-export const getError = (state: stateType) => state.error;
+export const getFilm = (state: State) => state.filmReducer.currentFilm;
+export const getSimilar = (state: State) => state.filmReducer.similarFilms;
+export const getReviews = (state: State) => state.filmReducer.reviews;

@@ -1,9 +1,13 @@
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../consts/app-route';
+import {useAppDispatch} from '../../hooks';
+import {logoutAction} from '../../store/api-actions';
+
 
 export default UserBlock;
 
 function UserBlock() : JSX.Element {
+  const dispatch = useAppDispatch();
   return (
     <ul className="user-block">
       <li className="user-block__item">
@@ -12,7 +16,10 @@ function UserBlock() : JSX.Element {
         </div>
       </li>
       <li className="user-block__item">
-        <Link className="user-block__link" to={AppRoute.SignIn}>
+        <Link className="user-block__link" onClick={() => {
+          dispatch(logoutAction());
+        }} to={AppRoute.SignIn}
+        >
           Sign out
         </Link>
       </li>
