@@ -12,4 +12,5 @@ export type ReviewSendData = {
   id: string;
   comment: string;
   rating: number;
+  date: string;
 }

@@ -13,9 +13,10 @@ import FilmReviews from '../../tabs/reviews';
 import {TabsType} from '../../../types/tab-type';
 import FilmCardImg from '../../film-card/film-card-img';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {getFilm, getReviews, getSimilar} from '../../../store/getters';
+import {getAuthorizationStatus, getFilm, getReviews, getSimilar} from '../../../store/getters';
 import {fetchFilm, fetchReviews, fetchSimilarFilms} from '../../../store/api-actions';
 import NotFoundPage from '../not-found-page/not-found-page';
+import {AuthorizationStatus} from "../../../consts/autorization-status";
 
 export default FilmPage;
 function FilmPage(){
@@ -23,6 +24,7 @@ function FilmPage(){
   const film = useAppSelector(getFilm);
   const reviews = useAppSelector(getReviews);
   const similarFilms = useAppSelector(getSimilar);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const id = useParams().id || '';
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -75,9 +77,7 @@ function FilmPage(){
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={AppRoute.AddReview(id)} className="btn film-card__button">
-                  Add review
-                </Link>
+                {authorizationStatus === AuthorizationStatus.Auth && <Link to={AppRoute.AddReview(id)} className="btn film-card__button"> Add review </Link>}
               </div>
             </div>
           </div>
