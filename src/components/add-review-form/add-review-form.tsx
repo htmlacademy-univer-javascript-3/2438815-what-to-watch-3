@@ -12,11 +12,10 @@ function AddReviewForm({filmId} : AddReviewFormProps) : JSX.Element {
   const dispatch = useAppDispatch();
   const [reviewText, setReviewText] = useState('');
   const [reviewRating, setReviewRating] = useState(0);
-  const currentDate = new Date().toDateString();
   const handleFieldChange = (evt:React.ChangeEvent<HTMLTextAreaElement>) => setReviewText(evt.target.value);
   const handleOnSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(postReview({id: filmId, comment: reviewText, rating: reviewRating, date: currentDate}));
+    dispatch(postReview({id: filmId, comment: reviewText, rating: reviewRating}));
   };
   return (
     <div className="add-review">
