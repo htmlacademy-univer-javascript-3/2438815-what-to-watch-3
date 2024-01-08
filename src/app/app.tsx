@@ -49,7 +49,7 @@ function App() : JSX.Element {
           element={<FilmPage/>}
         />
         <Route
-          path={AppRoute.AddReview}
+          path={AppRoute.AddReview()}
           element={<AddReviewPage/>}
         />
         <Route

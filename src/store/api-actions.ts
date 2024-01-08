@@ -24,7 +24,7 @@ import {AuthData} from '../types/auth-data-type';
 import {User} from '../types/user-type';
 import {dropToken, saveToken} from '../api/token';
 import {AppRoute} from '../consts/app-route';
-import {Reviews} from '../types/review-type';
+import {Reviews, ReviewSendData} from '../types/review-type';
 
 export const clearErrorAction = createAsyncThunk(
   'film/clearError',
@@ -83,14 +83,14 @@ export const fetchFilm = createAsyncThunk<void, string, {
 }>(
   'data/fetchFilm',
   async (id, {dispatch, extra: api}) => {
-    const {data} = await api.get<Film>(APIRoute.Film(id));
     try {
+      const {data} = await api.get<Film>(APIRoute.Film(id));
       dispatch(loadFilm(data));
       dispatch(redirectToRoute(AppRoute.Film(id)));
     } catch {
       dispatch(redirectToRoute(AppRoute.NotFoundPage));
     }
-  },
+  }
 );
 export const fetchSimilarFilms = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
@@ -108,10 +108,23 @@ export const fetchReviews = createAsyncThunk<void, string, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchSimilarFilms',
+  'data/fetchReviews',
   async (id, {dispatch, extra: api}) => {
     const {data} = await api.get<Reviews>(APIRoute.Comments(id));
     dispatch(loadReviews(data));
+  },
+);
+
+export const postReview = createAsyncThunk<void, ReviewSendData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/postReview',
+  async ({id,comment, rating}, {dispatch, extra: api}) => {
+    await api.post(APIRoute.Comments(id), {comment, rating});
+    dispatch(fetchReviews(id));
+    dispatch(redirectToRoute(AppRoute.Film(id)));
   },
 );
 

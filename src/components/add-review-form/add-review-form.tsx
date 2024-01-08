@@ -1,15 +1,28 @@
-import React, {useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import RatingItemsList from '../rating/rating';
+import {useAppDispatch} from '../../hooks';
+import {postReview} from '../../store/api-actions';
+
 export default AddReviewForm;
-function AddReviewForm() : JSX.Element {
+
+type AddReviewFormProps = {
+  filmId: string;
+}
+function AddReviewForm({filmId} : AddReviewFormProps) : JSX.Element {
+  const dispatch = useAppDispatch();
   const [reviewText, setReviewText] = useState('');
+  const [reviewRating, setReviewRating] = useState(0);
   const handleFieldChange = (evt:React.ChangeEvent<HTMLTextAreaElement>) => setReviewText(evt.target.value);
+  const handleOnSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    dispatch(postReview({id: filmId, comment: reviewText, rating: reviewRating}));
+  };
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form action="#" className="add-review__form" onSubmit={handleOnSubmit}>
         <div className="rating">
           <div className="rating__stars">
-            <RatingItemsList/>
+            <RatingItemsList setRating={setReviewRating}/>
           </div>
         </div>
         <div className="add-review__text">
