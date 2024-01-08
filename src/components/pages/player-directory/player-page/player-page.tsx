@@ -1,11 +1,6 @@
-import {VideoType} from '../../../../types/video-type';
-
 export default PlayerPage;
 
-type PlayerPageProps = {
-  video: VideoType;
-}
-function PlayerPage({video} : PlayerPageProps) : JSX.Element{
+function PlayerPage() : JSX.Element{
   return (
     <body>
       <div className="player">

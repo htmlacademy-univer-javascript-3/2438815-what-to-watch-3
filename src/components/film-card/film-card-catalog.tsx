@@ -32,7 +32,7 @@ function FilmCardCatalog({film, setId} : FilmCardCatalogProps) : JSX.Element {
         muted
       />
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoute.Film.replace('id', `${filmId}`)}>
+        <Link className="small-film-card__link" to={AppRoute.Film(filmId)}>
           {film.name}
         </Link>
       </h3>

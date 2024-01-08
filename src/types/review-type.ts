@@ -7,3 +7,9 @@ export type ReviewType = {
 }
 
 export type Reviews = ReviewType[];
+
+export type ReviewSendData = {
+  id: string;
+  comment: string;
+  rating: number;
+}

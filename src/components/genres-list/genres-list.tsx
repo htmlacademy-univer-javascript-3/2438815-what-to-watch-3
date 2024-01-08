@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {setActiveGenreFilmsAction} from '../../store/action';
+import {setActiveGenreFilmsAction} from '../../store/main-app-actions/main-app-actions';
 import {getAllFilms, getCurrentGenre} from '../../store/getters';
 
 export default GenresList;

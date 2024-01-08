@@ -6,12 +6,11 @@ import {
   setActiveGenreFilmsAction,
   setError,
   setLoadingStatus
-} from './action';
-import {Film, Films, PromoFilm} from '../types/film-type';
-import {AuthorizationStatus} from '../consts/autorization-status';
+} from './main-app-actions';
+import {Films, PromoFilm} from '../../types/film-type';
+import {AuthorizationStatus} from '../../consts/autorization-status';
 
 export type stateType = {
-  currentFilm: Film | undefined;
   genre: string;
   genreFilms: Films;
   allFilms: Films;
@@ -22,7 +21,6 @@ export type stateType = {
 }
 
 const activeState : stateType = {
-  currentFilm: undefined,
   genre: 'All genres',
   genreFilms: [],
   allFilms: [],
