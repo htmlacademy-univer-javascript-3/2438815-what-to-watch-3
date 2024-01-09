@@ -1,19 +1,20 @@
+import {memo, useCallback} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {setActiveGenreFilmsAction} from '../../store/main-app-actions/main-app-actions';
-import {getAllFilms, getCurrentGenre} from '../../store/getters';
-
-export default GenresList;
+import {setActiveGenreFilmsAction} from '../../store/main-page-process/main-page-process';
+import {getAllFilms, getCurrentGenre} from '../../store/main-page-process/main-page-getters';
+import {makeGenreList} from '../../functions/make-genres-list/make-genres-list';
 
 type GenreListProps = {
   onClickProp: () => void;
 }
 function GenresList({onClickProp}: GenreListProps) : JSX.Element {
   const dispatch = useAppDispatch();
-  const genresList = ['All genres'].concat([...new Set(useAppSelector(getAllFilms).map((film) => film.genre))].slice(0, 9));
   const activeGenre = useAppSelector(getCurrentGenre);
+  const allFilms = useAppSelector(getAllFilms);
+  const makeGenresListCallback = useCallback(() => makeGenreList(allFilms), [allFilms]);
   return (
     <ul className="catalog__genres-list">
-      {genresList.map((genre) => (
+      {makeGenresListCallback().map((genre) => (
         <li className={genre === activeGenre ? 'catalog__genres-item catalog__genres-item--active' : 'catalog__genres-item'} key={genre}>
           <nav className="catalog__genres-link" onClick={() => {
             onClickProp();
@@ -26,3 +27,5 @@ function GenresList({onClickProp}: GenreListProps) : JSX.Element {
     </ul>
   );
 }
+
+export default memo(GenresList);
