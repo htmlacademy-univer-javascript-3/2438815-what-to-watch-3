@@ -4,7 +4,7 @@ import UserBlock from '../user-block/user-block';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../consts/app-route';
 import {useAppSelector} from '../../hooks';
-import {getPromoFilm} from '../../store/getters';
+import {getPromoFilm} from '../../store/main-page-process/main-page-getters';
 
 export function PromoFilm() : JSX.Element {
   const promoFilm = useAppSelector(getPromoFilm);

@@ -13,8 +13,8 @@ import FilmReviews from '../../tabs/reviews';
 import {TabsType} from '../../../types/tab-type';
 import FilmCardImg from '../../film-card/film-card-img';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
-import {getAuthorizationStatus} from '../../../store/getters';
-import {getFilm, getReviews, getSimilar} from '../../../store/film-part/film-getters/film-getters';
+import {getAuthorizationStatus} from '../../../store/user-process/user-getters';
+import {getFilm, getReviews, getSimilar} from '../../../store/film-page-process/film-page-getters';
 import {fetchFilm, fetchReviews, fetchSimilarFilms} from '../../../store/api-actions';
 import {AuthorizationStatus} from '../../../consts/autorization-status';
 

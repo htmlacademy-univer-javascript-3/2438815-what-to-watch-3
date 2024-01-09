@@ -3,7 +3,8 @@ import UserBlock from '../../user-block/user-block';
 import Footer from '../../footer/footer';
 import FilmsList from '../../films-list/films-list';
 import {useAppSelector} from '../../../hooks';
-import {getAllFilms} from '../../../store/getters';
+import {getAllFilms} from '../../../store/main-page-process/main-page-getters';
+
 export default MyListPage;
 
 

@@ -2,7 +2,8 @@ import {AppRoute} from '../../consts/app-route';
 import {AuthorizationStatus} from '../../consts/autorization-status';
 import {Navigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
-import {getAuthorizationStatus} from '../../store/getters';
+import {getAuthorizationStatus} from '../../store/user-process/user-getters';
+
 export default PrivateRoute;
 
 type PrivateRouteProps = {

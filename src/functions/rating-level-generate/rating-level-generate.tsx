@@ -1,5 +1,3 @@
-import {processErrorHandle} from '../../api/process-error-handle';
-
 export function ratingLevelGenerate(ratingScore : number) : string {
   switch (true) {
     case 0 <= ratingScore && ratingScore < 3:
@@ -13,6 +11,5 @@ export function ratingLevelGenerate(ratingScore : number) : string {
     case 10 === ratingScore:
       return ('Awesome');
   }
-  processErrorHandle('Rating is out the bounds of array 0-10');
   return '';
 }

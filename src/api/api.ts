@@ -1,8 +1,9 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {getToken} from './token.ts';
-import {processErrorHandle} from './process-error-handle';
 import {BACKEND_URL, REQUEST_TIMEOUT} from '../consts/consts';
 import {StatusCodeMapping} from '../consts/api-response-statuses';
+import {store} from "../store/store";
+import {setError} from "../store/system-process/system-process";
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
@@ -28,7 +29,7 @@ export const createAPI = (): AxiosInstance => {
     (response) => response,
     (error: AxiosError) => {
       if (error.response && shouldDisplayError(error.response)) {
-        processErrorHandle(error.message);
+        store.dispatch(setError(<string>error.response.data));
       }
 
       throw error;

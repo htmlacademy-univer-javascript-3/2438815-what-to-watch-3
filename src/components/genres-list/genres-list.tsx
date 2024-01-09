@@ -1,7 +1,7 @@
 import {memo, useCallback} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {setActiveGenreFilmsAction} from '../../store/main-page-part/main-page-actions/main-page-actions';
-import {getAllFilms, getCurrentGenre} from '../../store/getters';
+import {setActiveGenreFilmsAction} from '../../store/main-page-process/main-page-process';
+import {getAllFilms, getCurrentGenre} from '../../store/main-page-process/main-page-getters';
 import {makeGenreList} from '../../functions/make-genres-list/make-genres-list';
 
 type GenreListProps = {
