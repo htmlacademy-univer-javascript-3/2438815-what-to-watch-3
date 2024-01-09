@@ -42,28 +42,26 @@ function PlayerPage() : JSX.Element{
     return(<NotFoundPage/>);
   }
   return (
-    <body>
-      <div className="player">
-        <video src={video.src} className="player__video" ref={refVideo} poster={video.poster} onTimeUpdate={handleTimeUpdate} muted={false} loop></video>
+    <div className="player">
+      <video src={video.src} className="player__video" ref={refVideo} poster={video.poster} onTimeUpdate={handleTimeUpdate} muted={false} loop></video>
 
-        <button type="button" className="player__exit" onClick={() => navigate(-1)}>Exit</button>
+      <button type="button" className="player__exit" onClick={() => navigate(-1)}>Exit</button>
 
-        <div className="player__controls">
-          <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value={percentProgress} max="100"></progress>
-              <div className="player__toggler" style={{ left: `${percentProgress}%` }}>Toggler</div>
-            </div>
-            <div className="player__time-value">{remainingTime}</div>
+      <div className="player__controls">
+        <div className="player__controls-row">
+          <div className="player__time">
+            <progress className="player__progress" value={percentProgress} max="100"></progress>
+            <div className="player__toggler" style={{ left: `${percentProgress}%` }}>Toggler</div>
           </div>
+          <div className="player__time-value">{remainingTime}</div>
+        </div>
 
-          <div className="player__controls-row">
-            <PlayerPlayButton isPlaying={isPlaying} setIsPlaying={setIsPlaying} refVideo={refVideo}/>
-            <div className="player__name">Transpotting</div>
-            <FullScreenButton refVideo={refVideo}/>
-          </div>
+        <div className="player__controls-row">
+          <PlayerPlayButton isPlaying={isPlaying} setIsPlaying={setIsPlaying} refVideo={refVideo}/>
+          <div className="player__name">Transpotting</div>
+          <FullScreenButton refVideo={refVideo}/>
         </div>
       </div>
-    </body>
+    </div>
   );
 }

@@ -5,7 +5,7 @@ import Footer from '../../footer/footer';
 import {Link, useParams} from 'react-router-dom';
 import FilmsList from '../../films-list/films-list';
 import {tabLabels} from '../../../consts/tab-labels';
-import {AppRoute} from '../../../consts/app-route';
+import {APP_ROUTE} from '../../../consts/app-route';
 import TabNavElement from '../../tab-navigation-element/tab-navigation-element';
 import FilmOverview from '../../tabs/overview';
 import FilmDetails from '../../tabs/details';
@@ -21,7 +21,7 @@ import {getIsDataLoading} from '../../../store/system-process/system-getters';
 import {LoadingPage} from '../loading-page/loading-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import {PlayButton} from '../../buttons/play-button/play-button';
-import {MyListButton} from "../../buttons/my-list-button/my-list-button";
+import {MyListButton} from '../../buttons/my-list-button/my-list-button';
 
 export default FilmPage;
 function FilmPage(){
@@ -47,7 +47,7 @@ function FilmPage(){
       {label: 'Reviews', tab: <FilmReviews reviews={reviews}/>},
     ];
     return (
-      <body>
+      <>
         <section className="film-card film-card--full">
           <div className="film-card__hero">
             <FilmCardImg img={film?.backgroundImage} alt={film?.name} className={'film-card__bg'}></FilmCardImg>
@@ -65,9 +65,9 @@ function FilmPage(){
                 </p>
                 <div className="film-card__buttons">
                   <PlayButton id={id}/>
-                  <MyListButton/>
+                  <MyListButton id={id} isFavorite={film.isFavorite}/>
                   {authorizationStatus === AuthorizationStatus.Auth &&
-                    <Link to={AppRoute.AddReview(id)} className="btn film-card__button"> Add review </Link>}
+                    <Link to={APP_ROUTE.ADD_REVIEW(id)} className="btn film-card__button"> Add review </Link>}
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ function FilmPage(){
           </section>
           <Footer/>
         </div>
-      </body>
+      </>
     );
   } else{
     if (isDataLoading){

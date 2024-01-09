@@ -1,30 +1,31 @@
-import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../consts/app-route';
-import {useAppSelector} from '../../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {getMyFilms} from '../../../store/my-films-page-process/my-films-page-getter';
-import {getAuthorizationStatus} from "../../../store/user-process/user-getters";
-import {AuthorizationStatus} from "../../../consts/autorization-status";
-
-export function MyListButton() : JSX.Element{
-  const myListCount = useAppSelector(getMyFilms).length;
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  if (authorizationStatus === AuthorizationStatus.Auth){
-    const is
-  }
+import { updateMyList} from '../../../store/api-actions';
+import {HrefTypes, MyListButtonSVG} from './my-list-button-svg';
 
 
+type MyListButtonProps = {
+  id : string;
+  isFavorite: boolean;
+}
+export function MyListButton({id, isFavorite} : MyListButtonProps) : JSX.Element{
+  const dispatch = useAppDispatch();
+  const myList = useAppSelector(getMyFilms);
+  const hrefType = isFavorite ? HrefTypes.InList : HrefTypes.Add;
 
-  return(
-    <button className="btn btn--list film-card__button" type="button">
-      <Link to={AppRoute.MyList}>
-        <svg viewBox="0 0 19 20" width="19" height="20">
-          <use xlinkHref="#add"></use>
-        </svg>
-      </Link>
+  const handleAuthoriseClick = () => {
+    const isFavoriteNumber = isFavorite ? 0 : 1;
+    dispatch(updateMyList({status: isFavoriteNumber, id}));
+  };
+
+  return (
+    <button className="btn btn--list film-card__button" type="button" onClick={() => handleAuthoriseClick()}>
+      <MyListButtonSVG hrefType={hrefType}/>
       <span>
         My list
       </span>
-      <span className="film-card__count">{myListCount}</span>
+      <span className="film-card__count">{myList.length}</span>
     </button>
   );
 }
+

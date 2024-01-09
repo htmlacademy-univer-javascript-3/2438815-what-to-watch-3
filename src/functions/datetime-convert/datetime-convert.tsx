@@ -1,4 +1,4 @@
-const monthsList = [
+const months = [
   'January',
   'February',
   'March',
@@ -17,6 +17,6 @@ export function dateTimeConvert(datetimeString : string): string {
   const datetime = new Date(datetimeString);
   const year = datetime.getFullYear().toString();
   const day = datetime.getDay().toString();
-  const month = monthsList[datetime.getMonth() - 1];
+  const month = months[datetime.getMonth() - 1];
   return (`${month} ${day}, ${year}`);
 }

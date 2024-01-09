@@ -30,7 +30,7 @@ export function PromoFilm() : JSX.Element {
 
             <div className="film-card__buttons">
               <PlayButton id={promoFilm?.id ? promoFilm.id : ''}/>
-              <MyListButton/>
+              {promoFilm && <MyListButton id={promoFilm?.id ? promoFilm.id : ''} isFavorite={promoFilm.isFavorite}/>}
             </div>
           </div>
         </div>

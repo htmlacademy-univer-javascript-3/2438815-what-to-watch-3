@@ -1,6 +1,6 @@
 import Logo from '../logo/logo';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../consts/app-route';
+import {APP_ROUTE} from '../../consts/app-route';
 
 export function HeadGuest() : JSX.Element{
   return(
@@ -15,7 +15,7 @@ export function HeadGuest() : JSX.Element{
         <Logo logoClassName={'logo__link'}/>
 
         <div className="user-block">
-          <Link className="user-block__link" to={AppRoute.SignIn}>
+          <Link className="user-block__link" to={APP_ROUTE.SIGN_IN}>
             Sign in
           </Link>
         </div>
