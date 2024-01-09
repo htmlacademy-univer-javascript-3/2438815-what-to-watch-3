@@ -3,9 +3,9 @@ import {
   loadFilm,
   loadSimilarFilms,
   loadReviews,
-} from './film-actions';
-import {Film, Films} from '../../types/film-type';
-import {Reviews} from '../../types/review-type';
+} from '../film-actions/film-actions';
+import {Film, Films} from '../../../types/film-type';
+import {Reviews} from '../../../types/review-type';
 
 export type filmStateType = {
   currentFilm: Film | undefined;

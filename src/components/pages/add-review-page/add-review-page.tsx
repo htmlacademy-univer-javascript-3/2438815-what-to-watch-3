@@ -4,7 +4,7 @@ import UserBlock from '../../user-block/user-block';
 import AddReviewForm from '../../add-review-form/add-review-form';
 import FilmCardImg from '../../film-card/film-card-img';
 import {useAppSelector} from '../../../hooks';
-import {getFilm} from '../../../store/getters';
+import {getFilm} from '../../../store/film-part/film-getters/film-getters';
 import NotFoundPage from '../not-found-page/not-found-page';
 export default AddReviewPage;
 

@@ -13,12 +13,12 @@ import {useAppSelector} from '../hooks';
 import {LoadingPage} from '../components/pages/loading-page/loading-page';
 import browserHistory from '../history-route/browser-history';
 import HistoryRouter from '../history-route/history-route';
-import {getAuthorizationStatus, getIsFilmDataLoading} from '../store/getters';
+import {getAuthorizationStatus, getIsDataLoading} from '../store/getters';
 
 export default App;
 
 function App() : JSX.Element {
-  const isFilmsDataLoading = useAppSelector(getIsFilmDataLoading);
+  const isFilmsDataLoading = useAppSelector(getIsDataLoading);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
     return (
