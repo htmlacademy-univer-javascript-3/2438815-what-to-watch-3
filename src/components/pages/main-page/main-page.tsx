@@ -3,7 +3,7 @@ import GenresList from '../../genres-list/genres-list';
 import FilmsList from '../../films-list/films-list';
 import {useAppSelector} from '../../../hooks';
 import {useCallback, useState} from 'react';
-import ShowMoreButton from '../../show-more-button/show-more-button';
+import ShowMoreButton from '../../buttons/show-more-button/show-more-button';
 import {getAuthorizationStatus} from '../../../store/user-process/user-getters';
 import {getGenreFilms} from '../../../store/main-page-process/main-page-getters';
 import {PromoFilm} from '../../promo-film/promo-film';

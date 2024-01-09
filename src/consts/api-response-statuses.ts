@@ -1,6 +1,6 @@
 import {StatusCodes} from 'http-status-codes';
 
-export const StatusCodeMapping: Record<number, boolean> = {
+export const STATUS_CODE_MAPPING: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.UNAUTHORIZED]: true,
   [StatusCodes.NOT_FOUND]: true

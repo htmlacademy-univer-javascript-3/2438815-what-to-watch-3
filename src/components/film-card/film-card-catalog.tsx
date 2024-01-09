@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../consts/app-route';
+import {APP_ROUTE} from '../../consts/app-route';
 import VideoPlayer from '../videoplayer/videoplayer';
 import {CatalogFilm} from '../../types/film-type';
 export default FilmCardCatalog;
@@ -32,7 +32,7 @@ function FilmCardCatalog({film, setId} : FilmCardCatalogProps) : JSX.Element {
         muted
       />
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={AppRoute.Film(filmId)}>
+        <Link className="small-film-card__link" to={APP_ROUTE.FILM(filmId)}>
           {film.name}
         </Link>
       </h3>

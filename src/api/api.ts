@@ -1,11 +1,11 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {getToken} from './token.ts';
 import {BACKEND_URL, REQUEST_TIMEOUT} from '../consts/consts';
-import {StatusCodeMapping} from '../consts/api-response-statuses';
-import {store} from "../store/store";
-import {setError} from "../store/system-process/system-process";
+import {STATUS_CODE_MAPPING} from '../consts/api-response-statuses';
+import {store} from '../store/store';
+import {setError} from '../store/system-process/system-process';
 
-const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
+const shouldDisplayError = (response: AxiosResponse) => !!STATUS_CODE_MAPPING[response.status];
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({

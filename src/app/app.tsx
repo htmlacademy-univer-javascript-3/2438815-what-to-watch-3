@@ -1,11 +1,11 @@
 import {Route, Routes} from 'react-router-dom';
 import {AuthorizationStatus} from '../consts/autorization-status';
-import {AppRoute} from '../consts/app-route';
+import {APP_ROUTE} from '../consts/app-route';
 import MainPage from '../components/pages/main-page/main-page';
 import SignInPage from '../components/pages/sign-in-page/sign-in-page';
 import MyListPage from '../components/pages/my-list-page/my-list-page';
 import AddReviewPage from '../components/pages/add-review-page/add-review-page';
-import PlayerPage from '../components/pages/player-directory/player-page/player-page';
+import PlayerPage from '../components/pages/player-page/player-page';
 import NotFoundPage from '../components/pages/not-found-page/not-found-page';
 import PrivateRoute from '../components/private-route/private-route';
 import FilmPage from '../components/pages/film-page/film-page';
@@ -30,15 +30,15 @@ function App() : JSX.Element {
     <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
-          path={AppRoute.Main}
+          path={APP_ROUTE.MAIN}
           element={<MainPage/>}
         />
         <Route
-          path={AppRoute.SignIn}
+          path={APP_ROUTE.SIGN_IN}
           element={<SignInPage/>}
         />
         <Route
-          path={AppRoute.MyList}
+          path={APP_ROUTE.MY_LIST}
           element={
             <PrivateRoute>
               <MyListPage/>
@@ -46,15 +46,15 @@ function App() : JSX.Element {
           }
         />
         <Route
-          path={AppRoute.Film()}
+          path={APP_ROUTE.FILM()}
           element={<FilmPage/>}
         />
         <Route
-          path={AppRoute.AddReview()}
+          path={APP_ROUTE.ADD_REVIEW()}
           element={<AddReviewPage/>}
         />
         <Route
-          path={AppRoute.Player}
+          path={APP_ROUTE.PLAYER()}
           element={<PlayerPage/>}
         />
         <Route

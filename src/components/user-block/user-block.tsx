@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../consts/app-route';
+import {APP_ROUTE} from '../../consts/app-route';
 import {useAppDispatch} from '../../hooks';
 import {logoutAction} from '../../store/api-actions';
 
@@ -18,7 +18,7 @@ function UserBlock() : JSX.Element {
       <li className="user-block__item">
         <Link className="user-block__link" onClick={() => {
           dispatch(logoutAction());
-        }} to={AppRoute.SignIn}
+        }} to={APP_ROUTE.SIGN_IN}
         >
           Sign out
         </Link>

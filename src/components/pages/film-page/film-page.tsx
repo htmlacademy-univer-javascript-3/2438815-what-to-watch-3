@@ -5,7 +5,7 @@ import Footer from '../../footer/footer';
 import {Link, useParams} from 'react-router-dom';
 import FilmsList from '../../films-list/films-list';
 import {tabLabels} from '../../../consts/tab-labels';
-import {AppRoute} from '../../../consts/app-route';
+import {APP_ROUTE} from '../../../consts/app-route';
 import TabNavElement from '../../tab-navigation-element/tab-navigation-element';
 import FilmOverview from '../../tabs/overview';
 import FilmDetails from '../../tabs/details';
@@ -15,8 +15,13 @@ import FilmCardImg from '../../film-card/film-card-img';
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {getAuthorizationStatus} from '../../../store/user-process/user-getters';
 import {getFilm, getReviews, getSimilar} from '../../../store/film-page-process/film-page-getters';
-import {fetchFilm, fetchReviews, fetchSimilarFilms} from '../../../store/api-actions';
+import {fetchFilmAction, fetchReviewsAction, fetchSimilarFilmsAction} from '../../../store/api-actions';
 import {AuthorizationStatus} from '../../../consts/autorization-status';
+import {getIsDataLoading} from '../../../store/system-process/system-getters';
+import {LoadingPage} from '../loading-page/loading-page';
+import NotFoundPage from '../not-found-page/not-found-page';
+import {PlayButton} from '../../buttons/play-button/play-button';
+import {MyListButton} from '../../buttons/my-list-button/my-list-button';
 
 export default FilmPage;
 function FilmPage(){
@@ -25,13 +30,14 @@ function FilmPage(){
   const reviews = useAppSelector(getReviews);
   const similarFilms = useAppSelector(getSimilar);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isDataLoading = useAppSelector(getIsDataLoading);
   const id = useParams().id || '';
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (!film || film.id !== id) {
-      dispatch(fetchFilm(id));
-      dispatch(fetchSimilarFilms(id));
-      dispatch(fetchReviews(id));
+      dispatch(fetchFilmAction(id));
+      dispatch(fetchSimilarFilmsAction(id));
+      dispatch(fetchReviewsAction(id));
     }
   });
   if (film) {
@@ -41,7 +47,7 @@ function FilmPage(){
       {label: 'Reviews', tab: <FilmReviews reviews={reviews}/>},
     ];
     return (
-      <body>
+      <>
         <section className="film-card film-card--full">
           <div className="film-card__hero">
             <FilmCardImg img={film?.backgroundImage} alt={film?.name} className={'film-card__bg'}></FilmCardImg>
@@ -58,25 +64,10 @@ function FilmPage(){
                   <span className="film-card__year">{film?.released}</span>
                 </p>
                 <div className="film-card__buttons">
-                  <button className="btn btn--play film-card__button" type="button">
-                    <Link to={AppRoute.Player}>
-                      <svg viewBox="0 0 19 19" width="19" height="19">
-                        <use xlinkHref="#play-s"></use>
-                      </svg>
-                    </Link>
-                    <span>Play</span>
-                  </button>
-                  <button className="btn btn--list film-card__button" type="button">
-                    <Link to={AppRoute.MyList}>
-                      <svg viewBox="0 0 19 20" width="19" height="20">
-                        <use xlinkHref="#add"></use>
-                      </svg>
-                    </Link>
-                    <span>My list</span>
-                    <span className="film-card__count">9</span>
-                  </button>
+                  <PlayButton id={id}/>
+                  <MyListButton id={id} isFavorite={film.isFavorite}/>
                   {authorizationStatus === AuthorizationStatus.Auth &&
-                    <Link to={AppRoute.AddReview(id)} className="btn film-card__button"> Add review </Link>}
+                    <Link to={APP_ROUTE.ADD_REVIEW(id)} className="btn film-card__button"> Add review </Link>}
                 </div>
               </div>
             </div>
@@ -103,7 +94,13 @@ function FilmPage(){
           </section>
           <Footer/>
         </div>
-      </body>
+      </>
     );
+  } else{
+    if (isDataLoading){
+      return (<LoadingPage/>);
+    } else {
+      return(<NotFoundPage/>);
+    }
   }
 }
