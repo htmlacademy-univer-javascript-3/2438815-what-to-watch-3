@@ -64,23 +64,25 @@ export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchFilm = createAsyncThunk<void, string, {
+export const fetchFilmAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchFilm',
   async (id, {dispatch, extra: api}) => {
+    dispatch(setLoadingStatus(true));
     try {
       const {data} = await api.get<Film>(APIRoute.Film(id));
       dispatch(loadFilm(data));
-      dispatch(redirectToRoute(AppRoute.Film(id)));
+      dispatch(setLoadingStatus(false));
     } catch {
       dispatch(redirectToRoute(AppRoute.NotFoundPage));
+      dispatch(setLoadingStatus(false));
     }
   }
 );
-export const fetchSimilarFilms = createAsyncThunk<void, string, {
+export const fetchSimilarFilmsAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -91,7 +93,8 @@ export const fetchSimilarFilms = createAsyncThunk<void, string, {
     dispatch(loadSimilarFilms(data));
   },
 );
-export const fetchReviews = createAsyncThunk<void, string, {
+
+export const fetchReviewsAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -111,7 +114,7 @@ export const postReview = createAsyncThunk<void, ReviewSendData, {
   'data/postReview',
   async ({id,comment, rating}, {dispatch, extra: api}) => {
     await api.post(APIRoute.Comments(id), {comment, rating});
-    dispatch(fetchReviews(id));
+    dispatch(fetchReviewsAction(id));
     dispatch(redirectToRoute('/back'));
   },
 );

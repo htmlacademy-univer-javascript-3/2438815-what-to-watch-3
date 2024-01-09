@@ -2,8 +2,8 @@ import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} fro
 import {getToken} from './token.ts';
 import {BACKEND_URL, REQUEST_TIMEOUT} from '../consts/consts';
 import {StatusCodeMapping} from '../consts/api-response-statuses';
-import {store} from "../store/store";
-import {setError} from "../store/system-process/system-process";
+import {store} from '../store/store';
+import {setError} from '../store/system-process/system-process';
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 

@@ -5,7 +5,7 @@ import MainPage from '../components/pages/main-page/main-page';
 import SignInPage from '../components/pages/sign-in-page/sign-in-page';
 import MyListPage from '../components/pages/my-list-page/my-list-page';
 import AddReviewPage from '../components/pages/add-review-page/add-review-page';
-import PlayerPage from '../components/pages/player-directory/player-page/player-page';
+import PlayerPage from '../components/pages/player-page/player-page';
 import NotFoundPage from '../components/pages/not-found-page/not-found-page';
 import PrivateRoute from '../components/private-route/private-route';
 import FilmPage from '../components/pages/film-page/film-page';
@@ -54,7 +54,7 @@ function App() : JSX.Element {
           element={<AddReviewPage/>}
         />
         <Route
-          path={AppRoute.Player}
+          path={AppRoute.Player('')}
           element={<PlayerPage/>}
         />
         <Route
