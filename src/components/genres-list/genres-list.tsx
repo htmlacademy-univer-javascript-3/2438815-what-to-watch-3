@@ -1,4 +1,4 @@
-import {memo, useCallback} from 'react';
+import {useCallback} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {setActiveGenreFilmsAction} from '../../store/main-page-process/main-page-process';
 import {getAllFilms, getCurrentGenre} from '../../store/main-page-process/main-page-getters';
@@ -28,4 +28,4 @@ function GenresList({onClickProp}: GenreListProps) : JSX.Element {
   );
 }
 
-export default memo(GenresList);
+export default GenresList;

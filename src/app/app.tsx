@@ -21,6 +21,7 @@ export default App;
 function App() : JSX.Element {
   const isFilmsDataLoading = useAppSelector(getIsDataLoading);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
     return (
       <LoadingPage />
@@ -51,7 +52,11 @@ function App() : JSX.Element {
         />
         <Route
           path={APP_ROUTE.ADD_REVIEW()}
-          element={<AddReviewPage/>}
+          element={
+            <PrivateRoute>
+              <AddReviewPage/>
+            </PrivateRoute>
+          }
         />
         <Route
           path={APP_ROUTE.PLAYER()}

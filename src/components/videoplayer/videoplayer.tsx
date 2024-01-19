@@ -1,4 +1,5 @@
 import {useRef, useEffect} from 'react';
+import {CATALOG_CARD_VIDEO_DELAY} from '../../consts/consts';
 
 type VideoPlayerProps = {
   videoLink: string;
@@ -16,14 +17,16 @@ function VideoPlayer({videoLink, poster, width, height, className, muted, isHove
     if (!currentVideo) {
       return;
     }
-    if (isHovered) {
-      currentVideo.play();
-    } else {
-      currentVideo.load();
-    }
-  },
-  [isHovered]
-  );
+    const timer = setTimeout(() => {
+      if (isHovered) {
+        currentVideo.play();
+      }
+    }, CATALOG_CARD_VIDEO_DELAY);
+    currentVideo.load();
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isHovered]);
   return (
     <video src={videoLink} width={width} height={height} className={className} poster={poster} muted={muted} ref={refVideo} loop></video>
   );

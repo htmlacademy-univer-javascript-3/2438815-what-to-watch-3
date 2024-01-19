@@ -1,8 +1,9 @@
 import {FormEvent, useRef} from 'react';
 import Logo from '../../logo/logo';
 import Footer from '../../footer/footer';
-import {useAppDispatch} from '../../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {loginAction} from '../../../store/api-actions';
+import {getError} from '../../../store/system-process/system-getters';
 
 export default SignInPage;
 function SignInPage() : JSX.Element{
@@ -18,6 +19,7 @@ function SignInPage() : JSX.Element{
       }
     }
   };
+  const error = useAppSelector(getError);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -26,6 +28,11 @@ function SignInPage() : JSX.Element{
       </header>
       <div className="sign-in user-page__content">
         <form action="sign-in-pages-directory/sign-in#" className="sign-in__form" ref={inputRef} onSubmit={handleSubmit}>
+          {error && (
+            <div className="sign-in__message">
+              <pre>{error}</pre>
+            </div>
+          )}
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email"/>

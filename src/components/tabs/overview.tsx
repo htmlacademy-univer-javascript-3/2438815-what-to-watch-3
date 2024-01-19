@@ -9,7 +9,7 @@ function FilmOverview({film} : FilmOverviewProps){
   return(
     <>
       <div className="film-rating">
-        <div className="film-rating__score">{film.rating}</div>
+        <div className="film-rating__score">{film.scoresCount !== 0 ? film.rating : 0}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">{ratingLevelGenerate(film.rating)}</span>
           <span className="film-rating__count">{film.scoresCount} ratings</span>

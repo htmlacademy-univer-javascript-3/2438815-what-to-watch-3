@@ -1,3 +1,5 @@
+import {RATING_END, RATING_START} from '../../consts/consts';
+
 function generateRatingList(min: number, max: number): number[] {
   return [...Array.from(Array(max - min + 1).keys())].map((num) => num + min);
 }
@@ -20,9 +22,7 @@ type RatingItemsListProps = {
   setRating : React.Dispatch<React.SetStateAction<number>>;
 }
 function RatingItemsList({setRating} : RatingItemsListProps){
-  const start = 1;
-  const end = 10;
-  const ratingList = generateRatingList(start, end);
+  const ratingList = generateRatingList(RATING_START, RATING_END);
   return (
     <>
       {ratingList.map((num) => (<RatingItem key={num} value={11 - num} setRating={setRating}/>))}

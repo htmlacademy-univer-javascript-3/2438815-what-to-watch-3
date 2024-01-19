@@ -4,7 +4,7 @@ import UserBlock from '../../user-block/user-block';
 import Footer from '../../footer/footer';
 import {Link, useParams} from 'react-router-dom';
 import FilmsList from '../../films-list/films-list';
-import {tabLabels} from '../../../consts/tab-labels';
+import {TabLabel} from '../../../consts/tab-labels';
 import {APP_ROUTE} from '../../../consts/app-route';
 import TabNavElement from '../../tab-navigation-element/tab-navigation-element';
 import FilmOverview from '../../tabs/overview';
@@ -25,7 +25,7 @@ import {MyListButton} from '../../buttons/my-list-button/my-list-button';
 
 export default FilmPage;
 function FilmPage(){
-  const [activeLabel, setActiveLabel] = useState<string>(tabLabels.Overview);
+  const [activeLabel, setActiveLabel] = useState<string>(TabLabel.Overview);
   const film = useAppSelector(getFilm);
   const reviews = useAppSelector(getReviews);
   const similarFilms = useAppSelector(getSimilar);
@@ -65,7 +65,7 @@ function FilmPage(){
                 </p>
                 <div className="film-card__buttons">
                   <PlayButton id={id}/>
-                  <MyListButton id={id} isFavorite={film.isFavorite}/>
+                  <MyListButton id={id}/>
                   {authorizationStatus === AuthorizationStatus.Auth &&
                     <Link to={APP_ROUTE.ADD_REVIEW(id)} className="btn film-card__button"> Add review </Link>}
                 </div>
