@@ -1,14 +1,14 @@
-export enum HrefTypes {
+export enum HrefType {
   'Add'= '#add',
   'InList' = '#in-list',
 }
 
 type MyListButtonSVGProps = {
-  hrefType: HrefTypes;
+  hrefType: HrefType;
 }
 
 export function MyListButtonSVG({hrefType} : MyListButtonSVGProps) : JSX.Element {
-  if (hrefType === HrefTypes.Add) {
+  if (hrefType === HrefType.Add) {
     return (
       <svg viewBox="0 0 19 20" width="19" height="20">
         <use xlinkHref="#add"></use>

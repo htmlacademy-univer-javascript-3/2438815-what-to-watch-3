@@ -3,15 +3,31 @@ import Logo from '../../logo/logo';
 import UserBlock from '../../user-block/user-block';
 import AddReviewForm from '../../add-review-form/add-review-form';
 import FilmCardImg from '../../film-card/film-card-img';
-import {useAppSelector} from '../../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {getFilm} from '../../../store/film-page-process/film-page-getters';
 import NotFoundPage from '../not-found-page/not-found-page';
+import {getAuthorizationStatus} from '../../../store/user-process/user-getters';
+import {AuthorizationStatus} from '../../../consts/autorization-status';
+import {getError} from '../../../store/system-process/system-getters';
+import {useEffect, useState} from 'react';
+import {fetchFilmAction} from '../../../store/api-actions';
+import {APP_ROUTE} from '../../../consts/app-route';
+
 export default AddReviewPage;
 
 function AddReviewPage() {
+  const id = useParams().id || '';
   const film = useAppSelector(getFilm);
-  const id = useParams().id;
-  if(!id) {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!film || film.id !== id) {
+      dispatch(fetchFilmAction(id));
+    }
+  }, [dispatch, id, film]);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const error = useAppSelector(getError);
+  const [isErrorVisible, setIsErrorVisible] = useState(false);
+  if(!id || authorizationStatus !== AuthorizationStatus.Auth) {
     return(<NotFoundPage/>);
   }
   return (
@@ -24,7 +40,7 @@ function AddReviewPage() {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to="film-page.html" className="breadcrumbs__link">
+                <Link to={APP_ROUTE.FILM(id)} className="breadcrumbs__link">
                   {film?.name}
                 </Link>
               </li>
@@ -37,7 +53,8 @@ function AddReviewPage() {
         </header>
         <FilmCardImg img={film?.backgroundImage} alt={film?.name} className={'film-card__poster film-card__poster--small'} width={218} height={327}></FilmCardImg>
       </div>
-      <AddReviewForm filmId={id}/>
+      <AddReviewForm filmId={id} isErrorVisible={setIsErrorVisible}/>
+      {isErrorVisible && <pre>{error}</pre>}
     </section>
   );
 }

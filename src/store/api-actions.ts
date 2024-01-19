@@ -7,7 +7,7 @@ import {
 import {
   loadFilm,
   loadSimilarFilms,
-  loadReviews
+  loadReviews,
 } from './film-page-process/film-page-process';
 import {
   loadFilms,
@@ -128,7 +128,6 @@ export const updateMyList = createAsyncThunk<void, UpdateMyListData, {
   async ({id, status}, {dispatch, extra: api}) => {
     await api.post(API_ROUTE.CHANGE_FAVORITE_STATUS(id, status));
     dispatch(fetchMyFilmsAction());
-    dispatch(redirectToRoute(APP_ROUTE.MY_LIST));
   },
 );
 

@@ -1,21 +1,24 @@
 import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {getMyFilms} from '../../../store/my-films-page-process/my-films-page-getter';
 import { updateMyList} from '../../../store/api-actions';
-import {HrefTypes, MyListButtonSVG} from './my-list-button-svg';
-
+import {HrefType, MyListButtonSVG} from './my-list-button-svg';
+import {useNavigate} from 'react-router-dom';
+import {APP_ROUTE} from '../../../consts/app-route';
 
 type MyListButtonProps = {
   id : string;
-  isFavorite: boolean;
 }
-export function MyListButton({id, isFavorite} : MyListButtonProps) : JSX.Element{
+export function MyListButton({id} : MyListButtonProps) : JSX.Element{
   const dispatch = useAppDispatch();
   const myList = useAppSelector(getMyFilms);
-  const hrefType = isFavorite ? HrefTypes.InList : HrefTypes.Add;
-
+  const isFavorite = myList.find((film) => (film.id === id));
+  const hrefType = isFavorite ? HrefType.InList : HrefType.Add;
+  const navigate = useNavigate();
   const handleAuthoriseClick = () => {
+
     const isFavoriteNumber = isFavorite ? 0 : 1;
     dispatch(updateMyList({status: isFavoriteNumber, id}));
+    navigate(APP_ROUTE.MY_LIST);
   };
 
   return (
